@@ -1,2 +1,0 @@
-C:\cpputest-4.0\examples\ApplicationLib\Debug\ApplicationLib.lib
-C:\Users\Delee_RD\cDesignPatterns\tests\ApplicationLib\Debug\ApplicationLib.lib
