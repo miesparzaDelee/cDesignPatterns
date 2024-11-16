@@ -1,0 +1,2 @@
+C:\cpputest-4.0\examples\AllTests\Debug\AllTests.exe
+C:\Users\Delee_RD\cDesignPatterns\tests\AllTests\Debug\AllTests.exe

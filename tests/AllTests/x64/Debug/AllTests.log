@@ -1,0 +1,9 @@
+﻿  AllTests.cpp
+  CircularBufferTest.cpp
+  EventDispatcherTest.cpp
+  HelloTest.cpp
+  MockDocumentationTest.cpp
+  PrinterTest.cpp
+  Generating Code...
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1363,5): warning MSB8012: TargetPath(C:\cpputest-4.0\examples\x64\Debug\AllTests.exe) does not match the Linker's OutputFile property value (C:\cpputest-4.0\examples\AllTests\Debug\AllTests.exe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+LINK : fatal error LNK1104: cannot open file '..\ApplicationLib\Debug\ApplicationLib.lib'
