@@ -191,9 +191,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\patterns\objectPattern.c" />
+    <ClCompile Include="..\..\src\patterns\opaquePattern.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\patterns\include\objectPattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\opaquePattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\singletonPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,8 @@
+#ifndef SINGLETON_PATTERN_H
+#define SINGLETON_PATTERN_H
+
+
+
+
+
+#endif

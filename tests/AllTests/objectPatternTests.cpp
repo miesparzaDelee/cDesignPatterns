@@ -7,7 +7,6 @@ extern "C" {
     // other references
 }
 
-
 TEST_GROUP(ObjectPattern)
 {
     void setup()
