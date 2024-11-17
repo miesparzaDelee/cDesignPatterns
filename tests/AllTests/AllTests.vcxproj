@@ -278,7 +278,9 @@
     <ClCompile Include="ExampleTests.cpp" />
     <ClCompile Include="objectPatternTests.cpp" />
     <ClCompile Include="opaquePatternTests.cpp" />
-    <ClCompile Include="PrivatePatternTests.cpp" />
+    <ClCompile Include="privatePatternTests.cpp" />
+    <ClCompile Include="simpleFactoryPatternTests.cpp" />
+    <ClCompile Include="singletonPatternTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApplicationLib\ApplicationLib.vcxproj">

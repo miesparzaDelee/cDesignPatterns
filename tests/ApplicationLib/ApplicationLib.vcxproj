@@ -193,13 +193,22 @@
     <ClCompile Include="..\..\src\patterns\objectPattern.c" />
     <ClCompile Include="..\..\src\patterns\opaquePattern.c" />
     <ClCompile Include="..\..\src\patterns\privatePattern.c" />
+    <ClCompile Include="..\..\src\patterns\sFactoryPattern_circle.c" />
+    <ClCompile Include="..\..\src\patterns\sFactoryPattern_square.c" />
+    <ClCompile Include="..\..\src\patterns\simpleFactoryPattern.c" />
+    <ClCompile Include="..\..\src\patterns\singletonPattern.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\patterns\Header.h" />
     <ClInclude Include="..\..\src\patterns\include\objectPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\opaquePattern.h" />
     <ClInclude Include="..\..\src\patterns\include\privatePattern.h" />
-    <ClInclude Include="..\..\src\patterns\include\privatePatternPrivate.h" />
+    <ClInclude Include="..\..\src\patterns\include\sFactoryPattern_circle.h" />
+    <ClInclude Include="..\..\src\patterns\include\sFactoryPattern_square.h" />
+    <ClInclude Include="..\..\src\patterns\include\simpleFactoryPattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\simpleFactoryPatternPrivate.h" />
     <ClInclude Include="..\..\src\patterns\include\singletonPattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\singletonPatternPrivate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
