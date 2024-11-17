@@ -192,10 +192,13 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\patterns\objectPattern.c" />
     <ClCompile Include="..\..\src\patterns\opaquePattern.c" />
+    <ClCompile Include="..\..\src\patterns\privatePattern.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\patterns\include\objectPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\opaquePattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\privatePattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\privatePatternPrivate.h" />
     <ClInclude Include="..\..\src\patterns\include\singletonPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
