@@ -1,0 +1,7 @@
+#ifndef SIMPLE_FACTORY_PRIVATE
+#define SIMPLE_FACTORY_PRIVATE
+
+
+
+
+#endif
