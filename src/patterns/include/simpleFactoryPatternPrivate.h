@@ -3,12 +3,9 @@
 
 #include "simpleFactoryPattern.h"
 
-#include <stdlib.h>
-#include <string.h>
+#include "common.h"
 
 
-#define CONTAINER_OF(ptr, type, member) \
-    ((type *)((char *)(ptr) - offsetof(type, member)))
 
 struct shape_api {
 	void (*draw)(hShape shape);

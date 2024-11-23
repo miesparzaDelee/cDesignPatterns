@@ -4,7 +4,6 @@
 #include "sFactoryPattern_square.h"
 #include "sFactoryPattern_circle.h"
 
-
 hShape shape_create(shape_type type) {
 	switch (type) {
 	case SHAPE_CIRCLE: {

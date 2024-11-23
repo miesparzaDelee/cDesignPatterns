@@ -190,6 +190,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\patterns\callbackPattern.c" />
     <ClCompile Include="..\..\src\patterns\objectPattern.c" />
     <ClCompile Include="..\..\src\patterns\opaquePattern.c" />
     <ClCompile Include="..\..\src\patterns\privatePattern.c" />
@@ -199,7 +200,8 @@
     <ClCompile Include="..\..\src\patterns\singletonPattern.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\patterns\Header.h" />
+    <ClInclude Include="..\..\src\patterns\include\callbackPattern.h" />
+    <ClInclude Include="..\..\src\patterns\include\common.h" />
     <ClInclude Include="..\..\src\patterns\include\objectPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\opaquePattern.h" />
     <ClInclude Include="..\..\src\patterns\include\privatePattern.h" />
