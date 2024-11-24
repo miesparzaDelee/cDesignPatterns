@@ -31,6 +31,9 @@
     <ClCompile Include="..\..\src\patterns\inheritancePattern.c">
       <Filter>patterns</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\patterns\traitsPattern.c">
+      <Filter>patterns</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\patterns\include\callbackPattern.h">
@@ -73,6 +76,9 @@
       <Filter>Examples</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\patterns\include\inheritancePattern.h">
+      <Filter>patterns\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\patterns\include\traitsPattern.h">
       <Filter>patterns\inc</Filter>
     </ClInclude>
   </ItemGroup>

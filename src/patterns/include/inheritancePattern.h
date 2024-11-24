@@ -5,28 +5,21 @@
 #include "linked_list.h"
 
 /** @file inheritancePattern.h
- *  @brief Demonstrates an inheritance and traits-based pattern in C.
+ *  @brief Demonstrates an inheritance pattern in C using struct composition.
  *
- *  This module showcases how to implement "inheritance" and "traits" in C using struct composition.
- *  It provides:
- *  - A base linked list node (`customLinkedNode`) with extended functionality.
- *  - Two distinct composite objects (`incrementCompositeTraits` and `otherCompositeTraits`)
- *    demonstrating different behaviors via traits.
- *
- *  ### Key Features
- *  - Reusability: Common functionality encapsulated in traits (`traitX` and `traitY`).
- *  - Flexibility: Composite objects independently define their own behaviors.
- *  - Integration: Combines with linked list functionality for hierarchical structures.
+ *  This module illustrates how to extend the functionality of a linked list node
+ *  by embedding it into another structure. The `customLinkedNode` struct extends
+ *  the base linked list node (`sLinL_node`) by adding a custom ID field, enabling
+ *  additional functionality while maintaining compatibility with the linked list
+ *  operations provided by the `linked_list` module.
  */
 
- /// @name Linked List Extension
- /// @{
  /**
-  * @brief Represents a custom linked list node extending the base functionality.
+  * @brief Represents a custom linked list node with an extended ID field.
   *
-  * The `customLinkedNode` extends the basic linked list node structure (`sLinL_node`)
-  * by adding an `id` field. This allows each node to store additional data while
-  * still behaving as a standard linked list node.
+  * The `customLinkedNode` embeds a basic linked list node structure (`sLinL_node`)
+  * and adds a custom ID field. This design enables the use of standard linked list
+  * operations while allowing additional data to be stored in each node.
   */
 typedef struct
 {
@@ -39,106 +32,10 @@ typedef customLinkedNode* hCustomLinkedNode;
 /**
  * @brief Initializes a custom linked list node.
  *
+ * Initializes the `id` field to 0 and prepares the node for use in a linked list.
+ *
  * @param me Pointer to the `customLinkedNode` to initialize.
  */
 void cln_Init(hCustomLinkedNode me);
-/// @}
-
-/// @name Trait Definitions
-/// @{
-/**
- * @brief Represents TraitX functionality.
- *
- * This trait defines a generic operation `do_x` that can be implemented
- * differently in derived objects.
- */
-typedef struct traitX
-{
-    void (*do_x)(struct traitX* me); /**< Function pointer for TraitX operation. */
-} traitX;
-
-typedef struct traitX* hTraitX;
-
-/**
- * @brief Invokes the TraitX operation.
- *
- * @param me Pointer to the `traitX` instance to invoke.
- */
-static inline void traitX_do(hTraitX me)
-{
-    me->do_x(me);
-}
-
-/**
- * @brief Represents TraitY functionality.
- *
- * This trait defines a generic operation `do_y` that can be implemented
- * differently in derived objects.
- */
-typedef struct traitY
-{
-    void (*do_y)(struct traitY* me); /**< Function pointer for TraitY operation. */
-} traitY;
-
-typedef struct traitY* hTraitY;
-
-/**
- * @brief Invokes the TraitY operation.
- *
- * @param me Pointer to the `traitY` instance to invoke.
- */
-static inline void traitY_do(hTraitY me)
-{
-    me->do_y(me);
-}
-/// @}
-
-/// @name Increment Composite Traits
-/// @{
-/**
- * @brief Composite object implementing increment behavior for TraitX and TraitY.
- *
- * - `TraitX` increments `counterX` each time `do_x` is invoked.
- * - `TraitY` increments `counterY` each time `do_y` is invoked.
- */
-typedef struct
-{
-    traitX incrementXtrait; /**< TraitX implementation for incrementing. */
-    traitY incrementYtrait; /**< TraitY implementation for incrementing. */
-    uint32_t counterX;      /**< Counter for TraitX operations. */
-    uint32_t counterY;      /**< Counter for TraitY operations. */
-} incrementCompositeTraits;
-
-/**
- * @brief Initializes an `incrementCompositeTraits` object.
- *
- * @param me Pointer to the `incrementCompositeTraits` to initialize.
- */
-void incrementCompositeTraits_Init(incrementCompositeTraits* me);
-/// @}
-
-/// @name Other Composite Traits
-/// @{
-/**
- * @brief Composite object implementing summing and multiplying behavior.
- *
- * - `TraitX` adds 5 to `sumFive` each time `do_x` is invoked.
- * - `TraitY` multiplies `multiplyTwo` by 2 each time `do_y` is invoked.
- */
-typedef struct
-{
-    traitX sumFiveTrait;    /**< TraitX implementation for summing. */
-    traitY multiplyTwoTrait; /**< TraitY implementation for multiplying. */
-    uint32_t sumFive;       /**< Accumulator for summing operations. */
-    uint32_t multiplyTwo;   /**< Accumulator for multiplying operations. */
-} otherCompositeTraits;
-
-/**
- * @brief Initializes an `otherCompositeTraits` object.
- *
- * @param me Pointer to the `otherCompositeTraits` to initialize.
- */
-void otherCompositeTraits_Init(otherCompositeTraits* me);
-/// @}
 
 #endif // INHERITANCE_PATTERN_H

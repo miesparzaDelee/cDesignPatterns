@@ -284,6 +284,7 @@
     <ClCompile Include="privatePatternTests.cpp" />
     <ClCompile Include="simpleFactoryPatternTests.cpp" />
     <ClCompile Include="singletonPatternTests.cpp" />
+    <ClCompile Include="traitsPatternTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApplicationLib\ApplicationLib.vcxproj">

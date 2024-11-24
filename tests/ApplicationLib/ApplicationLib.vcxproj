@@ -200,6 +200,7 @@
     <ClCompile Include="..\..\src\patterns\sFactoryPattern_square.c" />
     <ClCompile Include="..\..\src\patterns\simpleFactoryPattern.c" />
     <ClCompile Include="..\..\src\patterns\singletonPattern.c" />
+    <ClCompile Include="..\..\src\patterns\traitsPattern.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\examples\include\linked_list.h" />
@@ -216,6 +217,7 @@
     <ClInclude Include="..\..\src\patterns\include\simpleFactoryPatternPrivate.h" />
     <ClInclude Include="..\..\src\patterns\include\singletonPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\singletonPatternPrivate.h" />
+    <ClInclude Include="..\..\src\patterns\include\traitsPattern.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
