@@ -1,6 +1,7 @@
 #include "sFactoryPattern_square.h"
 
 #include "simpleFactoryPatternPrivate.h"
+#include <string.h>
 
 static void _shape_square_draw(hShape shape) {
 	shape_rectangle* me = CONTAINER_OF(shape, shape_rectangle, api);

@@ -190,7 +190,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(CPPUTEST_HOME)/include;../ApplicationLib;$(SolutionDir)..\src\patterns\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CPPUTEST_HOME)/include;../ApplicationLib;$(SolutionDir)..\src\patterns\include;$(SolutionDir)..\src\examples\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -277,6 +277,7 @@
     <ClCompile Include="AllTests.cpp" />
     <ClCompile Include="callbackPatternTests.cpp" />
     <ClCompile Include="ExampleTests.cpp" />
+    <ClCompile Include="linked_listTests.cpp" />
     <ClCompile Include="objectPatternTests.cpp" />
     <ClCompile Include="opaquePatternTests.cpp" />
     <ClCompile Include="privatePatternTests.cpp" />

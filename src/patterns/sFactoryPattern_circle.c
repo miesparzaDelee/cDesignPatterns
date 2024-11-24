@@ -1,6 +1,7 @@
 #include "sFactoryPattern_circle.h"
 
 #include "simpleFactoryPatternPrivate.h"	
+#include <string.h>
 
 static void _shape_circle_draw(hShape shape) {
 	shape_circle* me = CONTAINER_OF(shape, shape_circle, api);
