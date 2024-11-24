@@ -20,12 +20,13 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{95A5F8D0-12C0-4AC1-B46B-292DD3886108}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -76,6 +77,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <BuildLog>
@@ -190,7 +195,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(CPPUTEST_HOME)/include;../ApplicationLib;$(SolutionDir)..\src\patterns\include;$(SolutionDir)..\src\examples\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)AllTests/Mocks;$(CPPUTEST_HOME)/include;../ApplicationLib;$(SolutionDir)..\src\patterns\include;$(SolutionDir)..\src\examples\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -201,7 +206,8 @@
       <XMLDocumentationFileName>$(Configuration)/</XMLDocumentationFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -279,12 +285,14 @@
     <ClCompile Include="ExampleTests.cpp" />
     <ClCompile Include="inheritancePatternTests.cpp" />
     <ClCompile Include="linked_listTests.cpp" />
+    <ClCompile Include="Mocks\virtualApiPatternMock.cpp" />
     <ClCompile Include="objectPatternTests.cpp" />
     <ClCompile Include="opaquePatternTests.cpp" />
     <ClCompile Include="privatePatternTests.cpp" />
     <ClCompile Include="simpleFactoryPatternTests.cpp" />
     <ClCompile Include="singletonPatternTests.cpp" />
     <ClCompile Include="traitsPatternTests.cpp" />
+    <ClCompile Include="virtualApiPatternTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApplicationLib\ApplicationLib.vcxproj">
@@ -293,7 +301,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AllTests.h" />
+    <ClInclude Include="Mocks\virtualApiPatternMock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

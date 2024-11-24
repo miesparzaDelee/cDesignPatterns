@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AllTests.cpp" />
+    <ClCompile Include="callbackPatternTests.cpp" />
+    <ClCompile Include="ExampleTests.cpp" />
+    <ClCompile Include="linked_listTests.cpp" />
+    <ClCompile Include="objectPatternTests.cpp" />
+    <ClCompile Include="opaquePatternTests.cpp" />
+    <ClCompile Include="privatePatternTests.cpp" />
+    <ClCompile Include="simpleFactoryPatternTests.cpp" />
+    <ClCompile Include="singletonPatternTests.cpp" />
+    <ClCompile Include="Mocks\virtualApiPatternMock.cpp">
+      <Filter>Mocks</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Mocks">
+      <UniqueIdentifier>{92ab6178-ad4b-460e-b25d-5bd08ff18f56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mocks\virtualApiPatternMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

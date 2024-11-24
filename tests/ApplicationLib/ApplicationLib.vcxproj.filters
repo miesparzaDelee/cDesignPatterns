@@ -34,6 +34,9 @@
     <ClCompile Include="..\..\src\patterns\traitsPattern.c">
       <Filter>patterns</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\patterns\virtualApiPattern.c">
+      <Filter>patterns</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\patterns\include\callbackPattern.h">
@@ -79,6 +82,12 @@
       <Filter>patterns\inc</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\patterns\include\traitsPattern.h">
+      <Filter>patterns\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\patterns\include\virtualApiPattern_API.h">
+      <Filter>patterns\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\patterns\include\virtualApiPattern.h">
       <Filter>patterns\inc</Filter>
     </ClInclude>
   </ItemGroup>
