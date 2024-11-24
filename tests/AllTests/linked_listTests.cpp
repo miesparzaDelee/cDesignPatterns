@@ -10,7 +10,7 @@ extern "C" {
 static int iterationCount;
 
 // Static callback function
-static void forEachCallback(hLinL_node node)
+static void forEachCallback(hLinL_node baseNode)
 {
     iterationCount++; // Increment the iteration counter
 }
@@ -199,10 +199,10 @@ TEST(LinkedLists, IterateWithNodes)
 
 static hLinL_node lastVisitedNode = NULL;
 
-static void orderTestCallback(hLinL_node node)
+static void orderTestCallback(hLinL_node baseNode)
 {
-    CHECK(lastVisitedNode != node); // Ensure no node is visited twice
-    lastVisitedNode = node; // Track the last visited node
+    CHECK(lastVisitedNode != baseNode); // Ensure no node is visited twice
+    lastVisitedNode = baseNode; // Track the last visited node
 }
 
 TEST(LinkedLists, IterateNodeOrder)

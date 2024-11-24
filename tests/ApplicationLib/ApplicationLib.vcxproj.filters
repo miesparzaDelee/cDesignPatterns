@@ -28,6 +28,9 @@
     <ClCompile Include="..\..\src\examples\linked_list.c">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\patterns\inheritancePattern.c">
+      <Filter>patterns</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\patterns\include\callbackPattern.h">
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\examples\include\private_linked_list.h">
       <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\patterns\include\inheritancePattern.h">
+      <Filter>patterns\inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

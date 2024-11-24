@@ -36,7 +36,7 @@ typedef struct sLinL_list* hLinL_list;
  *
  * @param node The current node being iterated.
  */
-typedef void (*sLinL_iterate_cb)(hLinL_node node);
+typedef void (*sLinL_iterate_cb)(hLinL_node baseNode);
 
 /**
  * @brief Struct containing iteration callback details.
@@ -69,7 +69,7 @@ void LinL_init(hLinL_list me, LinL_iterateCallback* cb);
  * @note The `node` must not already be part of another linked list.
  * @note The `node->next` pointer is updated to NULL internally.
  */
-bool LinL_append(hLinL_list me, hLinL_node node);
+bool LinL_append(hLinL_list me, hLinL_node baseNode);
 
 /**
  * @brief Removes a node from the linked list.
@@ -81,7 +81,7 @@ bool LinL_append(hLinL_list me, hLinL_node node);
  *
  * @note The `node` is not freed; memory management is the responsibility of the caller.
  */
-bool LinL_remove(hLinL_list me, hLinL_node node);
+bool LinL_remove(hLinL_list me, hLinL_node baseNode);
 
 /**
  * @brief Iterates over all nodes in the linked list and invokes the callback function for each.

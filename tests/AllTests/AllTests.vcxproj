@@ -277,6 +277,7 @@
     <ClCompile Include="AllTests.cpp" />
     <ClCompile Include="callbackPatternTests.cpp" />
     <ClCompile Include="ExampleTests.cpp" />
+    <ClCompile Include="inheritancePatternTests.cpp" />
     <ClCompile Include="linked_listTests.cpp" />
     <ClCompile Include="objectPatternTests.cpp" />
     <ClCompile Include="opaquePatternTests.cpp" />

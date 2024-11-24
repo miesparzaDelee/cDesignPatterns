@@ -16,35 +16,35 @@ void LinL_init(hLinL_list me, LinL_iterateCallback* cb)
     }
 }
 
-bool LinL_append(hLinL_list me, hLinL_node node)
+bool LinL_append(hLinL_list me, hLinL_node baseNode)
 {
-    if (!me || !node) return false; // Validate inputs
+    if (!me || !baseNode) return false; // Validate inputs
 
-    node->next = NULL; // Ensure the new node points to NULL
+    baseNode->next = NULL; // Ensure the new node points to NULL
 
     if (me->head == NULL) {
         // If the list is empty, the new node becomes both head and tail
-        me->head = node;
-        me->tail = node;
+        me->head = baseNode;
+        me->tail = baseNode;
     }
     else {
         // Link the new node at the end of the list
-        me->tail->next = node;
-        me->tail = node; // Update the tail pointer
+        me->tail->next = baseNode;
+        me->tail = baseNode; // Update the tail pointer
     }
 
     return true; // Return true if the node was successfully added
 }
 
-bool LinL_remove(hLinL_list me, hLinL_node node) 
+bool LinL_remove(hLinL_list me, hLinL_node baseNode) 
 {
-    if (!me || !node || me->head == NULL) return false; // Validate inputs
+    if (!me || !baseNode || me->head == NULL) return false; // Validate inputs
 
     hLinL_node current = me->head;
     hLinL_node previous = NULL;
 
     while (current != NULL) {
-        if (current == node) { // Node found
+        if (current == baseNode) { // Node found
             if (previous == NULL) {
                 me->head = current->next; // Remove head
             }
