@@ -38,7 +38,7 @@ TEST_GROUP(VirtualApiPattern)
 TEST(VirtualApiPattern, InitWithValidApi)
 {
     /* Validate that the handle and status are set correctly */
-    CHECK(comm.handle == apiHandle);
+    CHECK(comm.api == apiHandle);
     CHECK_EQUAL(0, comm.status);
 }
 
@@ -49,7 +49,7 @@ TEST(VirtualApiPattern, InitWithNullApi)
 
     /* Validate that the status indicates an error */
     CHECK_EQUAL(255, comm.status);
-    CHECK(comm.handle == NULL);
+    CHECK(comm.api == NULL);
 }
 
 TEST(VirtualApiPattern, WriteDelegatesToVirtualApi)
@@ -88,7 +88,7 @@ TEST(VirtualApiPattern, WriteFailsForUninitializedHandle)
 {
     /* Simulate an uninitialized comm object */
     abstractComm uninitializedComm;
-    uninitializedComm.handle = NULL;
+    uninitializedComm.api = NULL;
     uninitializedComm.status = 0;
 
     int result = comm_write(&uninitializedComm, buffer, sizeof(buffer));
@@ -99,7 +99,7 @@ TEST(VirtualApiPattern, ReadFailsForUninitializedHandle)
 {
     /* Simulate an uninitialized comm object */
     abstractComm uninitializedComm;
-    uninitializedComm.handle = NULL;
+    uninitializedComm.api = NULL;
     uninitializedComm.status = 0;
 
     int result = comm_read(&uninitializedComm, buffer, sizeof(buffer));

@@ -29,7 +29,7 @@ typedef struct commVirtualApi** hCommVirtualApi;
 typedef struct
 {
     uint8_t status;               /**< Status of the communication object. */
-    hCommVirtualApi handle;       /**< Handle to the virtual API instance. */
+    hCommVirtualApi api;       /**< Handle to the virtual API instance. */
 } abstractComm;
 
 typedef abstractComm* hAbstractComm;
