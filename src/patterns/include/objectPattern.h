@@ -19,7 +19,7 @@ typedef struct
 
 
 // Init implies that module user has to allocate the object
-// me/self implies that function will operate only on the passed element
+// me implies that function will operate only on the passed element
 uint32_t op_Init(object_t* me, object_config_t * conf);
 
 uint32_t op_Deinit(object_t* me);
