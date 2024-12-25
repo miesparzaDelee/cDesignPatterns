@@ -3,7 +3,16 @@
 ## 1. Importance of Modularity in Embedded Systems
 
 - **Definition of Modularity**:
-  - Breaking systems into self-contained, reusable components.
+  - Definition for this book purposes, it might have some alignment but the stated characteristics are necessary conditions to be module.
+  - Not all pair of .h .c files can be considered a module.
+
+### Key module characteristics.
+  - Self-contained.
+  - Reusable.
+  - Testable or TDD developed.
+  - Clear interface or set of public functions that can be used.
+  - Each module should handle only one problem/objective.
+  - A module 
 - **Challenges in Embedded Systems**:
   - Hardware constraints.
   - Real-time requirements.
