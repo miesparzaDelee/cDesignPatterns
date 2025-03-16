@@ -14,22 +14,22 @@ struct opaqueObject_t
 };
 
 
-int oop_Init(hOpaqueObject me, opaqueObject_config_t* conf)
+int oop_Init(hOpaqueObject self, opaqueObject_config_t* conf)
 {
 	//op_Deinit(me);
 	if (conf->parameter1 > 0)
 	{
-		me->variable = 1;
-		me->flags |= OPAQUE_PATTERN_FLAG_1;
+		self->variable = 1;
+		self->flags |= OPAQUE_PATTERN_FLAG_1;
 	}
 	if (conf->parameter2 > 0)
 	{
-		me->flags |= OPAQUE_PATTERN_FLAG_3;
+		self->flags |= OPAQUE_PATTERN_FLAG_3;
 	}
 	return 0;
 }
 
-int oop_Deinit(hOpaqueObject me)
+int oop_Deinit(hOpaqueObject self)
 {
 	return 0;
 }
@@ -44,25 +44,25 @@ hOpaqueObject oop_new()
 	return malloc(oop_size());
 }
 
-void oop_free(hOpaqueObject * me)
+void oop_free(hOpaqueObject * self)
 {
-	free(*me);
-	*me = NULL;
+	free(*self);
+	*self = NULL;
 }
 
 
 // methods that operate on an opaque
-void oop_setParameter(hOpaqueObject me, uint32_t parameter)
+void oop_setParameter(hOpaqueObject self, uint32_t parameter)
 {
 	return 0;
 }
 
-uint32_t oop_getFlags(hOpaqueObject me)
+uint32_t oop_getFlags(hOpaqueObject self)
 {
 	return 0;
 }
 
-uint32_t oop_getParameters(hOpaqueObject me)
+uint32_t oop_getParameters(hOpaqueObject self)
 {
 	return 0;
 }

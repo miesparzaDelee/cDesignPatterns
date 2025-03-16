@@ -81,28 +81,42 @@ It is most effective when implemented thoughtfully, with careful consideration o
 
 ### What is EMoD Development?
 
-In this book, we propose a standardized modular development approach designed to address the challenges of embedded development and leverage technological advancements in the microcontroller industry. This approach, named Embedded Modular Development (EMoD), enables the implementation of well-structured, reusable, and efficient modules for embedded systems.
+In this book, we propose a standardized modular development approach designed to address the challenges of embedded development and leverage technological advancements in the microcontroller industry.
+This approach, named Embedded Modular Development (EMoD), enables the implementation of well-structured, reusable, and efficient modules for embedded systems.
 
-The EMoD proposal is not a novel concept but rather an extraction of well-known practices, programming techniques, and paradigms specifically adapted for embedded development. While it does not introduce entirely new ideas, it provides a structured way to organize code and serves as a compendium of recommended practices. EMoD is not a fixed or rigid methodology; instead, it is a flexible approach that encourages the creation of reusable modules with slight modifications as needed. This adaptability allows developers to include only the necessary components, ensuring a balance between modularity and efficiency.
+The EMoD proposal is not a novel concept but rather an extraction of well-known practices, programming techniques, and paradigms specifically adapted for embedded development.
+While it does not introduce entirely new ideas, it provides a structured way to organize code and serves as a compendium of recommended practices.
+EMoD is not a fixed or rigid methodology; instead, it is a flexible approach that encourages the creation of reusable modules with slight modifications as needed. This adaptability allows developers to include only the necessary components, ensuring a balance between modularity and efficiency.
 
 The primary motivation for conceptualizing this proposal stems from the author's necessity to produce code that addresses several persistent challenges in embedded development:
 
 - **Highly Coupled Hardware-Related Code**: Many embedded projects rely on vendor-specific hardware abstraction layers (HALs), which create strong dependencies and hinder portability across different platforms.
+
 - **Lack of Code Interchangeability**: Due to tight coupling, similar functionality often needs to be rewritten for different projects, leading to redundant code and increased maintenance effort.
+
 - **Dependency on Hardware for Testing**: Verification processes are often tied to physical hardware, significantly delaying debugging and validation.
+
 - **Inability to Use TDD or Independently Testable Code**: Without modularization, unit testing and test-driven development (TDD) become impractical, as code cannot be easily tested in isolation.
+
 - **Non-Standardized and Non-Replicable Development Environments**: Varying toolchains and IDEs across teams or projects reduce efficiency and limit code reuse.
+
 - **Strong Dependency on Specific Hardware Vendors**: Codebases tightly integrated with a particular vendor's ecosystem make migration to new hardware costly and time-consuming.
 
 By addressing these challenges, EMoD provides a structured methodology that promotes reusability, portability, and maintainability in embedded systems development.
 
-The intention of EMoD is to provide a structured yet flexible framework consisting of templates and terminology that facilitate the rapid and standardized development of modules. These modules should address the previously mentioned challenges while remaining adaptable to different project requirements. Rather than enforcing a rigid methodology, EMoD presents a collection of best practices and programming paradigms that guide developers in structuring their code efficiently.
+The intention of EMoD is to provide a structured yet flexible framework consisting of templates and terminology that facilitate the rapid and standardized development of modules.
+These modules should address the previously mentioned challenges while remaining adaptable to different project requirements.
+Rather than enforcing a rigid methodology, EMoD presents a collection of best practices and programming paradigms that guide developers in structuring their code efficiently.
 
-From this approach, several standardized modules emerge as templates, and this book highlights the most common and reusable ones. However, these templates are not fixed; they can be modified, tailored, or adapted to meet specific needs. This flexibility ensures that modules remain reusable with slight modifications while allowing developers to include or exclude specific features as required, without compromising maintainability or scalability.
+From this approach, several standardized modules emerge as templates, and this book highlights the most common and reusable ones.
+However, these templates are not fixed; they can be modified, tailored, or adapted to meet specific needs.
+This flexibility ensures that modules remain reusable with slight modifications while allowing developers to include or exclude specific features as required, without compromising maintainability or scalability.
 
 ## 3. Overview of the Book’s Chapters
 
-This book provides a structured methodology for modular embedded development. Each chapter builds on the previous one, establishing a clear pathway for implementing modular principles effectively in embedded systems. The book is divided in the following chapters.
+This book provides a structured methodology for modular embedded development.
+Each chapter builds on the previous one, establishing a clear pathway for implementing modular principles effectively in embedded systems.
+The book is divided in the following chapters.
 
 - **Chapter 2: Recommended Practices**
   - Establishes fundamental coding conventions tailored for embedded systems, focusing on readability, maintainability, and efficiency.
@@ -141,7 +155,8 @@ Each chapter builds upon the concepts from the previous one, creating a structur
 
 ## 4. Who is This Book For?
 
-This book is intended for embedded software developers and engineers looking to enhance the structure, maintainability, and scalability of their firmware projects. The targeted audience includes:
+This book is intended for embedded software developers and engineers looking to enhance the structure, maintainability, and scalability of their firmware projects.
+The targeted audience includes:
 
 - **Embedded Systems Engineers and Developers**: Professionals working on firmware and embedded applications who aim to integrate modularity into their workflows.
 - **Engineers Transitioning to Modular Design**: Those familiar with embedded development but looking to adopt modular practices to improve code reuse and maintainability.
@@ -174,7 +189,8 @@ To enhance learning and provide hands-on experience, an accompanying repository 
 
 ## 6. Summary
 
-This chapter introduced the importance of modularity in embedded systems and outlined the book’s structured approach to teaching modular design principles. By following the methodologies and templates presented in this book, readers will be equipped to:
+This chapter introduced the importance of modularity in embedded systems and outlined the book’s structured approach to teaching modular design principles.
+By following the methodologies and templates presented in this book, readers will be equipped to:
 
 - Develop embedded systems using a structured modular approach.
 - Improve code reuse, maintainability, and portability.
