@@ -1,17 +1,14 @@
 #ifndef PRIVATE_PATTERN_H
 #define PRIVATE_PATTERN_H
 
-// Useful for multiple instances modules
-
 #include <stdint.h>
 
-
-struct privateObject_t;
-typedef struct privateObject_t* hPrivateObject;
+struct privateStruct;
+typedef struct privateStruct* hPrivateObject_t;
 
 #include "privatePatternPrivate.h"
 
-struct privateObject_t
+typedef struct privateStruct
 {
 	uint32_t publicStatus;
 	_privateObject_t privateData;
@@ -24,8 +21,8 @@ typedef struct
 }privateObject_config_t;
 
 
-uint32_t privPatt_Init(hPrivateObject me, privateObject_config_t* conf);
+uint32_t privPatt_Init(hPrivateObject_t self, privateObject_config_t* conf);
 
-uint32_t privPatt_DeInit(hPrivateObject me);
+uint32_t privPatt_DeInit(hPrivateObject_t self);
 
 #endif
