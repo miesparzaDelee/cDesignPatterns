@@ -21,7 +21,7 @@ TEST_GROUP(OpaquePattern)
 
 TEST(OpaquePattern, Init_StackAllocation)
 {
-    hOpaqueObject opaque1 = (hOpaqueObject)alloca(oop_size());
+    hOpaqueObject_t opaque1 = (hOpaqueObject_t)alloca(oop_size());
     opaqueObject_config_t opaque1_conf;
     opaque1_conf.parameter1 = 1;
     opaque1_conf.parameter2 = 0;
@@ -34,7 +34,7 @@ TEST(OpaquePattern, Init_StackAllocation)
 
 TEST(OpaquePattern, Init_DynamicAllocation)
 {
-    hOpaqueObject opaque1 = oop_new();
+    hOpaqueObject_t opaque1 = oop_new();
     opaqueObject_config_t opaque1_conf;
     opaque1_conf.parameter1 = 1;
     opaque1_conf.parameter2 = 0;

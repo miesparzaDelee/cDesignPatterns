@@ -7,7 +7,7 @@
 typedef struct
 {
 	uint8_t param;
-	hOpaqueObject element;
+	hOpaqueObject_t element;
 }singletton_config_t;
 
 

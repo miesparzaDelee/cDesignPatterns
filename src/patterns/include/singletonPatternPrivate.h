@@ -7,9 +7,9 @@
 struct _singletonModule 
 {
 uint32_t status;
-hOpaqueObject hElement1;
+hOpaqueObject_t hElement1;
 struct privateObject_t element2;
-hOpaqueObject hElement2;
+hOpaqueObject_t hElement2;
 uint8_t param1;
 };
 

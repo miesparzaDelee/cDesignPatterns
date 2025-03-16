@@ -20,9 +20,9 @@ TEST_GROUP(SingletonPattern)
     }
 };
 
-hOpaqueObject getConfiguredObject()
+hOpaqueObject_t getConfiguredObject()
 {
-    hOpaqueObject ret = oop_new();
+    hOpaqueObject_t ret = oop_new();
     opaqueObject_config_t ret_conf;
     ret_conf.parameter1 = 1;
     ret_conf.parameter2 = 0;
