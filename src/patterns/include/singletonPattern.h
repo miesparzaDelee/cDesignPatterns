@@ -4,17 +4,22 @@
 #include <stdint.h>
 #include "opaquePattern.h"
 
+
+typedef struct
+{
+	uint32_t status;
+	uint32_t param;
+	hOpaqueObject_t element1;
+}singletonData_t;
+
 typedef struct
 {
 	uint8_t param;
-	hOpaqueObject_t element;
+	hOpaqueObject_t element1;
 }singletton_config_t;
 
+singletonData_t * singPatt_Init(singletton_config_t* conf);
 
-uint32_t singPatt_Create(singletton_config_t* conf);
-
-uint32_t singPatt_GetStatus();
-
-uint32_t singPatt_ChangeStatus(uint32_t newStatus);
+void singPatt_SetParam(int32_t param);
 
 #endif

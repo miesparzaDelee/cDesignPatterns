@@ -69,9 +69,6 @@
     <ClInclude Include="..\..\src\patterns\include\simpleFactoryPatternPrivate.h">
       <Filter>patterns\inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\patterns\include\singletonPatternPrivate.h">
-      <Filter>patterns\inc</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\patterns\include\singletonPattern.h">
       <Filter>patterns\inc</Filter>
     </ClInclude>

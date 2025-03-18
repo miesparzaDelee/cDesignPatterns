@@ -21,8 +21,8 @@ TEST_GROUP(PrivatePattern)
 
 TEST(PrivatePattern, Init)
 {
-    privateObject_t private1;
-    hPrivateObject privHandle = &private1;
+    privateStruct private1;
+    hPrivateObject_t privHandle = &private1;
     privateObject_config_t private1_conf;
     private1_conf.parameter1 = 1;
     private1_conf.parameter2 = 0;

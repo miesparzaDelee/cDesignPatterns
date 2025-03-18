@@ -219,7 +219,6 @@
     <ClInclude Include="..\..\src\patterns\include\simpleFactoryPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\simpleFactoryPatternPrivate.h" />
     <ClInclude Include="..\..\src\patterns\include\singletonPattern.h" />
-    <ClInclude Include="..\..\src\patterns\include\singletonPatternPrivate.h" />
     <ClInclude Include="..\..\src\patterns\include\traitsPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\virtualApiPattern.h" />
     <ClInclude Include="..\..\src\patterns\include\virtualApiPattern_API.h" />
