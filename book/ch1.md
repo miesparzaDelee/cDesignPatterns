@@ -1,6 +1,6 @@
-# Chapter 1: Introduction to Modular Embedded Design
+# Introduction to Modular Embedded Design
 
-## 1. Modularity in Embedded Systems
+## Modularity in Embedded Systems
 
 Historically, embedded systems have not embraced modularity as a development approach.
 Lets define *modularity* as the practice of dividing a system into self-contained, reusable *modules* with clearly defined interfaces.
@@ -77,7 +77,7 @@ Potential disadvantages include:
 These trade-offs remind developers that modularity is not a one-size-fits-all solution.
 It is most effective when implemented thoughtfully, with careful consideration of system constraints and project goals.  
 
-## 2. The Embedded Modular Development (EMoD) Approach
+## The Embedded Modular Development (EMoD) Approach
 
 ### What is EMoD Development?
 
@@ -105,6 +105,7 @@ The primary motivation for conceptualizing this proposal stems from the author's
 By addressing these challenges, EMoD provides a structured methodology that promotes reusability, portability, and maintainability in embedded systems development.
 
 The intention of EMoD is to provide a structured yet flexible framework consisting of templates and terminology that facilitate the rapid and standardized development of modules.
+
 These modules should address the previously mentioned challenges while remaining adaptable to different project requirements.
 Rather than enforcing a rigid methodology, EMoD presents a collection of best practices and programming paradigms that guide developers in structuring their code efficiently.
 
@@ -112,7 +113,7 @@ From this approach, several standardized modules emerge as templates, and this b
 However, these templates are not fixed; they can be modified, tailored, or adapted to meet specific needs.
 This flexibility ensures that modules remain reusable with slight modifications while allowing developers to include or exclude specific features as required, without compromising maintainability or scalability.
 
-## 3. Overview of the Book’s Chapters
+## Overview of the Book’s Chapters
 
 This book provides a structured methodology for modular embedded development.
 Each chapter builds on the previous one, establishing a clear pathway for implementing modular principles effectively in embedded systems.
@@ -152,8 +153,7 @@ Each chapter builds upon the concepts from the previous one, creating a structur
 - **Embedded Modular Patterns**: Applies modularity to embedded-specific challenges, ensuring adaptability and efficiency.
 - **Case Studies**: Demonstrates real-world applications of modular design, reinforcing the concepts introduced in earlier chapters.
 
-
-## 4. Who is This Book For?
+## Who is This Book For?
 
 This book is intended for embedded software developers and engineers looking to enhance the structure, maintainability, and scalability of their firmware projects.
 The targeted audience includes:
@@ -170,7 +170,7 @@ To fully benefit from this book, readers should have:
 - Proficiency in C programming, particularly in an embedded context.
 - Familiarity with microcontrollers and low-level programming concepts.
 
-## 5. How to Use This Book
+## How to Use This Books
 
 ### Learning Path
 
@@ -187,7 +187,7 @@ To enhance learning and provide hands-on experience, an accompanying repository 
 - **Adaptation Guidelines**: Instructions on how to modify and integrate the templates into custom projects.
 - **Direct References**: Each case study and template includes links to corresponding repository resources for easy access and implementation.
 
-## 6. Summary
+## Summary
 
 This chapter introduced the importance of modularity in embedded systems and outlined the book’s structured approach to teaching modular design principles.
 By following the methodologies and templates presented in this book, readers will be equipped to:

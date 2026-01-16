@@ -5,7 +5,7 @@
 
 struct opaqueStruct;
 
-typedef struct opaqueStruct* hOpaqueObject_t;
+typedef struct opaqueStruct * hOpaqueObject_t;
 
 typedef struct
 {
@@ -20,7 +20,7 @@ void oop_free(hOpaqueObject_t* self);
 
 // init and deinit
 int oop_Init(hOpaqueObject_t self, opaqueObject_config_t* conf);
-int oop_Deinit(hOpaqueObject_t self);
+int oop_DeInit(hOpaqueObject_t self);
 
 
 // methods that operate on an opaque

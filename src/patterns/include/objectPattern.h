@@ -22,6 +22,6 @@ typedef struct
 // self implies that function will operate only on the passed element
 uint32_t op_Init(object_t* self, object_config_t * conf);
 
-uint32_t op_Deinit(object_t* self);
+uint32_t op_DeInit(object_t* self);
 
 #endif

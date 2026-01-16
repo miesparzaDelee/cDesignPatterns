@@ -1,0 +1,44 @@
+{
+	"Include Whole File": {
+		"prefix": "cwhole",
+		"body": [
+			"{{ file \"${1:src/}\" type=\"whole\" }}"
+		],
+		"description": "Inject an entire C file"
+	},
+	"Include Function": {
+		"prefix": "cfunc",
+		"body": [
+			"{{ file \"${1:src/}\" type=\"function\" name=\"${2:funcName}\" }}"
+		],
+		"description": "Inject a C function implementation"
+	},
+	"Include Struct": {
+		"prefix": "cstruct",
+		"body": [
+			"{{ file \"${1:src/}\" type=\"struct\" name=\"${2:StructName}\" }}"
+		],
+		"description": "Inject a struct definition"
+	},
+	"Include Typedef": {
+		"prefix": "ctypedef",
+		"body": [
+			"{{ file \"${1:src/}\" type=\"typedef\" name=\"${2:TypeName}\" }}"
+		],
+		"description": "Inject a typedef"
+	},
+	"Include Region": {
+		"prefix": "cregion",
+		"body": [
+			"{{ file \"${1:src/}\" type=\"region\" name=\"${2:region_name}\" }}"
+		],
+		"description": "Inject a custom region"
+	},
+    "Include Header Include": {
+		"prefix": "cinc",
+		"body": [
+			"{{ file \"${1:src/}\" type=\"include\" name=\"${2:header.h}\" }}"
+		],
+		"description": "Inject a specific #include line"
+	}
+}

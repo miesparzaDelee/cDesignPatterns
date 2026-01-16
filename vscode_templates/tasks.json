@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Book",
+            "type": "shell",
+            "command": "python",
+            "args": ["scripts/build_book.py"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "silent", // Don't steal focus, just run
+                "panel": "shared"
+            }
+        }
+    ]
+}

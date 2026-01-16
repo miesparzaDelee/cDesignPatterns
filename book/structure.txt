@@ -1,0 +1,17 @@
+# --- Introduction ---
+#intro.md
+#setup_env.md
+ch1.md
+ch2.md
+ch3_.md
+  ch3_1.md
+  ch3_2.md
+  ch3_3.md
+
+# --- Core Patterns ---
+# object_pattern.md  <-- This one is hidden/commented out
+#opaque_pattern.md
+#proxy_pattern.md
+
+# --- Conclusion ---
+#summary.md

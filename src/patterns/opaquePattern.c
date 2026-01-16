@@ -29,7 +29,7 @@ int oop_Init(hOpaqueObject_t self, opaqueObject_config_t* conf)
 	return 0;
 }
 
-int oop_Deinit(hOpaqueObject_t self)
+int oop_DeInit(hOpaqueObject_t self)
 {
 	return 0;
 }

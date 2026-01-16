@@ -4,7 +4,8 @@
 #include <stdint.h>
 
 struct privateStruct;
-typedef struct privateStruct* hPrivateObject_t;
+
+typedef struct privateStruct * hPrivateObject_t;
 
 #include "privatePatternPrivate.h"
 

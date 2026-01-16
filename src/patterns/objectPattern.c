@@ -8,7 +8,7 @@
 
 uint32_t op_Init(object_t* self, object_config_t* conf)
 {
-	op_Deinit(self);
+	op_DeInit(self);
 	if (conf->parameter1 > 0)
 	{
 		self->variable = 1;
@@ -21,7 +21,7 @@ uint32_t op_Init(object_t* self, object_config_t* conf)
 	return 0;
 }
 
-uint32_t op_Deinit(object_t* self)
+uint32_t op_DeInit(object_t* self)
 {
 	memset(self, 0, sizeof(object_t));
 	return 0;
