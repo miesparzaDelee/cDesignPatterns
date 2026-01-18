@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "ionutvmi.path-autocomplete",      // For {{ file "..." }}
+    "gruntfuggly.triggertaskonsave",   // For auto-build on save
+    "myriad-dreamin.tinymist"          // For Typst Preview & Language Support
+  ]
+}

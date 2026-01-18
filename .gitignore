@@ -1,3 +1,4 @@
 build/
 test_env/
 .vscode/
+**/__pycache__/**

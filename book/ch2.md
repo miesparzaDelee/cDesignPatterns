@@ -1,21 +1,45 @@
-# Chapter 2: Recommended Practices and Conventions
+# Recommended Practices and Conventions
 
-## 1. Introduction to Recommended Practices
+## Introduction to Recommended Practices
 
-- **Objective**: Explain why coding standards, testing, debugging, and version control are essential for modular embedded systems.
-- **Key Takeaways**: What the reader will gain by following these practices.
+The recommended practices and proposed coding and development conventions detailed in this book are purely pragmatic.
+Those wer gathered through learning and surviving due to natural selection.
+Meaning that those that provided valuable remain, while those that  more effort than benefit naturally gone and gets unused.
+During this exploratory effort, carried out during the professional life of the author, plenty of different approaches and suggestions have been tested, used and unused.
+Most of them come from the gold standards books, conventions and authors from software and embedded development world, while some have been adapted and evolving to what we present now.
 
+<!--raw-typst #draft[ 
+Describe the importance of such tools and practices in the presented modular approach presented.
+- Explain the grouping of such tools and how we narrow to these groups
+  -  Coding standards and conventions
+  -  Hardware emulation approaches 
+  -  Debug modules in unit testing
+] -->
+
+<!--raw-typst #draft[ 
+Explain that those are only recommendations and that this book follows them, but could not be usable in all cases.
+] -->
 ---
 
-## 2. Coding Standards and Conventions
+## Coding Standards and Conventions
 
-### Why Standards Matter
+<!--raw-typst #draft[ 
+ Consistency across teams and projects.
+] -->
 
-- Consistency across teams and projects.
-- Reducing onboarding time for new developers.
-- Enabling tools like linters to catch issues early.
+<!--raw-typst #draft[ 
+  Reducing onboarding time for new developers.
+] -->
 
-### Specific Recommendations
+<!--raw-typst #draft[ 
+  Enabling tools like linters to catch issues early.
+] -->
+
+### Specific Recommendations (one per sub-sub section)
+
+<!--raw-typst #draft[ 
+  *To do*, define a   
+] -->
 
 - **Naming Conventions**: Variables, functions, constants, and macros.
 - **Folder and File Structure**:
@@ -42,6 +66,7 @@
 
 - Mocking hardware dependencies (e.g., simulating peripherals).
 - Writing testable code: Dependency injection and abstraction layers.
+- Debugging on target vs. simulation.
 
 ### Testing Frameworks
 
@@ -54,45 +79,7 @@
 
 ---
 
-## 4. Debugging Techniques
-
-### Common Debugging Challenges
-
-- Pinpointing issues in modular codebases.
-- Debugging on target vs. simulation.
-
-### Best Practices
-
-- Use of logging (UART, SWO).
-- Debugging tools: JTAG/SWD, logic analyzers.
-- Strategies for isolating bugs in modular systems.
-
-### Example Scenario
-
-- Debugging a task scheduler issue using logging and breakpoints.
-
----
-
-## 5. Version Control Best Practices
-
-### Why Version Control is Essential for Modular Development
-
-- Managing multiple contributors and codebase versions.
-- Tracking changes in modules without introducing regressions.
-
-### Recommendations
-
-- Structuring repositories for modular systems.
-- Branching strategies for feature development.
-- Using submodules for third-party libraries.
-
-### Examples
-
-- Setting up a Git repository with modular code templates.
-
----
-
-## 6. Summary
+## Summary
 
 - Recap key practices.
 - Emphasize how these practices lay the groundwork for patterns and templates in later chapters.

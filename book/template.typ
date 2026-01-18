@@ -1,5 +1,16 @@
 // book/template.typ
 
+#let draft(body) = {
+  block(
+    fill: rgb("#f5feff"),      // Light Red Background
+    stroke: (left: 4pt + rgb("#31b2bb")), // Red Border
+    inset: 16pt, 
+    radius: 4pt, 
+    width: 100%,
+    [*PARAGRAPH:* #body]         // Automatically adds bold "DRAFT" label
+  )
+}
+
 #let project(title: "", authors: (), body) = {
   // --- 1. Page Setup ---
   set page(
