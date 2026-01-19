@@ -150,14 +150,20 @@ We have organized these standards into four main categories:
 **Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
 ] -->
 
+<!--raw-typst #convention(id: "CS-06", title: "config structs on init functions")[
+**Standard**: Use config structs, even if at first glance does not needed. Modules can easily grow and as stated, those are contract, providing with config structs allows to change and handle improvements wothout breaking current code.
+
+**Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
+] -->
+
 #### Source Files
-<!--raw-typst #convention(id: "CS-06", title: "Source Content")[
+<!--raw-typst #convention(id: "CS-07", title: "Source Content")[
 **Standard**: The module header must be included first in the source file.
 
 **Rationale**: Verifies that the header is truly self-contained.
 ] -->
 
-<!--raw-typst #convention(id: "CS-07", title: "Source Organization")[
+<!--raw-typst #convention(id: "CS-08", title: "Source Organization")[
 **Standard**: Follow a strict organization pattern: Includes -> Macros -> Types -> Private Prototypes -> Private Vars -> Implementations.
 
 **Rationale**: Improves code navigability and consistency.
@@ -271,5 +277,6 @@ TEST(Module, Init_StateIsReset) {
 ## Debugging and Hardware Emulation
 
 <!--raw-typst #draft[
+In this
 (Write your ideas for Debugging and Emulation here. How do we debug on host vs target? What is the 'Faking' strategy?)
 ] -->
