@@ -2,12 +2,26 @@
 
 #let draft(body) = {
   block(
-    fill: rgb("#f5feff"),      // Light Red Background
+    fill: rgb("#f5feff"), // Light Red Background
     stroke: (left: 4pt + rgb("#31b2bb")), // Red Border
-    inset: 16pt, 
-    radius: 4pt, 
+    inset: 16pt,
+    radius: 4pt,
     width: 100%,
-    [*PARAGRAPH:* #body]         // Automatically adds bold "DRAFT" label
+    [*PARAGRAPH:* #body], // Automatically adds bold "DRAFT" label
+  )
+}
+
+#let convention(id: "", title: "", body) = {
+  block(
+    fill: rgb("#e6f3ff"), // Light Blue Background
+    stroke: (left: 4pt + rgb("#2196f3")), // Blue Border
+    inset: 16pt,
+    radius: 4pt,
+    width: 100%,
+    [
+      *#id: #title* \
+      #body
+    ],
   )
 }
 
@@ -18,7 +32,7 @@
     margin: (x: 1in, y: 1in, top: 1in, bottom: 1in),
     // REMOVED: numbering: "1" (for pages is fine, but we kept it simple)
     numbering: "1",
-    
+
     header: context {
       let page-num = counter(page).get().first()
       if page-num > 1 {
@@ -26,12 +40,12 @@
         stack(dir: ltr, spacing: 1fr, title, str(page-num))
         line(length: 100%, stroke: 0.5pt + luma(200))
       }
-    }
+    },
   )
 
   set text(font: "Times New Roman", size: 11pt, lang: "en")
   set par(justify: true, leading: 0.65em)
-  
+
   // --- 2. NO NUMBERING ---
   // We set this to none so Typst doesn't add "1.", "1.1", etc.
   set heading(numbering: none)
@@ -63,7 +77,7 @@
         radius: 5pt,
         width: 100%,
         stroke: 0.5pt + luma(200),
-        text(font: "Consolas", size: 9pt, it)
+        text(font: "Consolas", size: 9pt, it),
       )
     } else {
       box(fill: luma(240), inset: (x: 3pt), radius: 2pt, text(font: "Consolas", size: 9pt, it))
