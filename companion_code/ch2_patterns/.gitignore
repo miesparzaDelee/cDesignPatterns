@@ -1,0 +1,4 @@
+.vscode/
+tests/build/**
+
+!tests/build/makefile

@@ -1,0 +1,5 @@
+# Enforce LF (Linux) line endings for shell scripts
+*.sh text eol=lf
+
+# Enforce CRLF (Windows) for batch/powershell if you want, or let them float
+*.ps1 text eol=crlf
