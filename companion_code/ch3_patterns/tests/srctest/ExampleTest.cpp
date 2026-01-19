@@ -6,11 +6,17 @@ extern "C" {
  */
 }
 
-TEST_GROUP(MyCode){ void setup(){}
+TEST_GROUP(MyModule){ 
+    void setup(){
+        // add init 
+    }
 
-                    void teardown(){} };
+    void teardown(){
+        // add deinit
+    } 
+};
 
-TEST(MyCode, test1)
+TEST(MyModule, test1)
 {
     /*
      * Instantiate you class or call the function you want to test
