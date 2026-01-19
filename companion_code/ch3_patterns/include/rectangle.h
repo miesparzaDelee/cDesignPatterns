@@ -5,8 +5,9 @@
 
 // Object structure definition
 typedef struct {
-    uint32_t width;
-    uint32_t height;
+   uint32_t width;
+   uint32_t height;
+   const uint32_t area;
 } rectangle_t;
 
 // Object configuration structure definition (CS-06)
@@ -20,6 +21,6 @@ void rect_init(rectangle_t *self, rect_config_t * conf);
 
 uint32_t rect_get_area(rectangle_t *self);
 
-void rect_deinit(rectangle_t *self, rect_config_t * conf);
+void rect_updateWidth(rectangle_t *self, uint32_t newWidth);
 
 #endif // RECTANGLE_H

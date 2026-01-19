@@ -1,5 +1,5 @@
-#ifndef SHAPE_FACTORY_PATTERN_H
-#define SHAPE_FACTORY_PATTERN_H
+#ifndef SHAPE_FACTORY_H
+#define SHAPE_FACTORY_H
 
 // this is our public header
 typedef enum shape_type {

@@ -17,8 +17,8 @@ TEST_GROUP(rectangle_NoInit_Group){
 TEST(rectangle_NoInit_Group, module_multipleInstancesExample)
 {
     // 1. Declare instances
-    rectangle_t small_rect;
-    rectangle_t big_rect;
+    rectangle_t small_rect = { }; // only for c++
+    rectangle_t big_rect = { };
     rect_config_t conf;
     
     // 2. Initialize with different states
@@ -30,11 +30,7 @@ TEST(rectangle_NoInit_Group, module_multipleInstancesExample)
     conf.width  = 200;
     rect_init(&big_rect, &conf);
 
-    // 3. Operate on them independently
-    uint32_t area1 = rect_get_area(&small_rect);
-    uint32_t area2 = rect_get_area(&big_rect);
-
     // Test expected behavior
-    LONGS_EQUAL(5*10, area1);
-    LONGS_EQUAL(100*200, area2);
+    LONGS_EQUAL(5*10, small_rect.area);
+    LONGS_EQUAL(100*200, big_rect.area);
 }

@@ -1,11 +1,9 @@
-#ifndef SIMPLE_FACTORY_PATTERN_PRIVATE_H
-#define SIMPLE_FACTORY_PATTERN_PRIVATE_H
+#ifndef SHAPE_FACTORY_PRIVATE_H
+#define SHAPE_FACTORY_PRIVATE_H
 
-#include "simpleFactoryPattern.h"
+#include "shape_factory.h"
 
 #include "common.h"
-
-
 
 struct shape_api {
 	void (*draw)(hShape shape);
