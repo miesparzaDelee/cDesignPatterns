@@ -5,13 +5,34 @@
             "label": "Build Book",
             "type": "shell",
             "command": "python",
-            "args": ["scripts/build_book.py"],
+            "args": [
+                "scripts/build_book.py"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "presentation": {
                 "reveal": "silent", // Don't steal focus, just run
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Test Patterns",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/companion_code/ch3_patterns"
+            },
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
                 "panel": "shared"
             }
         }
