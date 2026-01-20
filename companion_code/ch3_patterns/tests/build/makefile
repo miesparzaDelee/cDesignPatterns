@@ -34,6 +34,7 @@ SRC_FILES += $(WORKSPACE_PATH)/src/circle.c
 SRC_FILES += $(WORKSPACE_PATH)/src/shape_rectangle.c
 SRC_FILES += $(WORKSPACE_PATH)/src/shape_circle.c
 SRC_FILES += $(WORKSPACE_PATH)/src/shape_api.c
+SRC_FILES += $(WORKSPACE_PATH)/src/triangle.c
 # SRC_DIRS: Directories to search for .c and .cpp files
 # Note: You can append multiple dirs using +=
 # SRC_DIRS += $(WORKSPACE_PATH)/src/

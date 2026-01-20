@@ -13,6 +13,7 @@ python3 scripts/build_book.py
 The processed files will appear in the `build/` directory.
 
 ## 2. Dependencies
+
 * **Python 3.x** (Standard library only; no `pip install` required).
 
 ## 3. How to Use Tags in Markdown
@@ -20,6 +21,7 @@ The processed files will appear in the `build/` directory.
 In your `book/*.md` files, use the following syntax to inject C code.
 
 ### A. Syntax Overview
+
 `{{ file "path/to/file.c" type="TYPE" name="NAME" }}`
 
 * **path**: Relative to the project root (e.g., `src/patterns/objectPattern.c`).
@@ -37,21 +39,26 @@ In your `book/*.md` files, use the following syntax to inject C code.
 | **`struct`** | Extracts a struct definition or forward decl. | `type="struct" name="myStruct"` |
 | **`function`** | Extracts a function body or prototype. | `type="function" name="op_Init"` |
 | **`region`** | Extracts code between custom markers. | `type="region" name="my_snippet"` |
+| **`test_group`** | Extracts a CppUTest TEST_GROUP block. | `type="test_group" name="MyGroup"` |
+| **`test`** | Extracts a CppUTest TEST block. | `type="test" name="MyGroup,myTest"` |
 
 ---
 
 ## 4. Advanced Features
 
 ### Automatic Merging
+
 If you place two tags next to each other (separated only by whitespace), they will be merged into a single C code block in the output.
 
 **Input:**
+
 ```markdown
 {{ file "src/demo.h" type="struct" name="A" }}
 {{ file "src/demo.h" type="struct" name="B" }}
 ```
 
 **Output:**
+
 ```c
 struct A { ... };
 
@@ -59,9 +66,11 @@ struct B { ... };
 ```
 
 ### Regions (Arbitrary Lines)
+
 To extract a specific block of logic inside a function without extracting the whole function, use "regions".
 
 **1. In your C file:**
+
 ```c
 void complexLogic() {
     int x = 0;
@@ -76,6 +85,7 @@ void complexLogic() {
 `{{ file "src/logic.c" type="region" name="math_logic" }}`
 
 **3. Output:**
+
 ```c
 x = x + 5;
 y = x * 2;

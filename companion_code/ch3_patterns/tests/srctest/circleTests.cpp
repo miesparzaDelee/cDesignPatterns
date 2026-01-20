@@ -4,7 +4,7 @@ extern "C" {
     #include "circle.h"
 }
 
-TEST_GROUP(circle_NoInit_Group){ 
+TEST_GROUP(Circle_OpaquePattern){ 
     void setup(){
         // add init 
     }
@@ -14,7 +14,7 @@ TEST_GROUP(circle_NoInit_Group){
     } 
 };
 
-TEST(circle_NoInit_Group, module_multipleInstancesExample)
+TEST(Circle_OpaquePattern, demonstrates_OpaqueHandleUsage)
 {
     // 1. Declare instances
     circle_memory_t small_circ = { }; // only for c++

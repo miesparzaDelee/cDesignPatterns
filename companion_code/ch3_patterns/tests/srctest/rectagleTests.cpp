@@ -4,7 +4,7 @@ extern "C" {
     #include "rectangle.h"
 }
 
-TEST_GROUP(rectangle_NoInit_Group){ 
+TEST_GROUP(Rectangle_ObjectPattern){ 
     void setup(){
         // add init 
     }
@@ -14,7 +14,7 @@ TEST_GROUP(rectangle_NoInit_Group){
     } 
 };
 
-TEST(rectangle_NoInit_Group, module_multipleInstancesExample)
+TEST(Rectangle_ObjectPattern, demonstrates_MultipleIndependentInstances)
 {
     // 1. Declare instances
     rectangle_t small_rect = { }; // only for c++

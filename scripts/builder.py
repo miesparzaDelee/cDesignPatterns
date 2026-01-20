@@ -159,6 +159,63 @@ def extract_function(content, name):
 
     return None
 
+def extract_test_group(content, name):
+    """Extract a TEST_GROUP block from CppUTest file."""
+    pattern = re.compile(rf'TEST_GROUP\s*\(\s*{re.escape(name)}\s*\)\s*\{{', re.DOTALL)
+    match = pattern.search(content)
+    
+    if not match:
+        return None
+    
+    start_idx = match.start()
+    open_brace_idx = match.end() - 1
+    idx = open_brace_idx + 1
+    balance = 1
+    
+    while idx < len(content):
+        if content[idx] == '{': balance += 1
+        elif content[idx] == '}': balance -= 1
+        
+        if balance == 0:
+            end_idx = idx + 1
+            # Look for the semicolon after the closing brace
+            while end_idx < len(content) and content[end_idx].isspace():
+                end_idx += 1
+            if end_idx < len(content) and content[end_idx] == ';':
+                end_idx += 1
+            return content[start_idx:end_idx].strip()
+        idx += 1
+    
+    return None
+
+def extract_test(content, group_name, test_name):
+    """Extract a TEST block from CppUTest file."""
+    # Pattern: TEST(group_name, test_name)
+    pattern = re.compile(
+        rf'TEST\s*\(\s*{re.escape(group_name)}\s*,\s*{re.escape(test_name)}\s*\)\s*\{{',
+        re.DOTALL
+    )
+    match = pattern.search(content)
+    
+    if not match:
+        return None
+    
+    start_idx = match.start()
+    open_brace_idx = match.end() - 1
+    idx = open_brace_idx + 1
+    balance = 1
+    
+    while idx < len(content):
+        if content[idx] == '{': balance += 1
+        elif content[idx] == '}': balance -= 1
+        
+        if balance == 0:
+            return content[start_idx:idx+1].strip()
+        idx += 1
+    
+    return None
+
+
 def get_snippet(root_dir, rel_path, kind, name):
     full_path = os.path.join(root_dir, rel_path)
     if not os.path.exists(full_path):
@@ -176,6 +233,13 @@ def get_snippet(root_dir, rel_path, kind, name):
     elif kind == "struct": snippet = extract_struct(content, name)
     elif kind == "include": snippet = extract_include(content, name)
     elif kind == "region": snippet = extract_region(content, name)
+    elif kind == "test_group": snippet = extract_test_group(content, name)
+    elif kind == "test":
+        # For test, name should be "group_name,test_name"
+        if ',' not in name:
+            raise ValueError(f"Test extraction requires name format 'group_name,test_name', got '{name}'")
+        group_name, test_name = name.split(',', 1)
+        snippet = extract_test(content, group_name.strip(), test_name.strip())
     else: 
         raise ValueError(f"Unknown type '{kind}' requested for '{name}'")
 
@@ -183,7 +247,9 @@ def get_snippet(root_dir, rel_path, kind, name):
         # ERROR: Stop the build immediately
         raise ValueError(f"Could not find {kind} '{name}' in {rel_path}")
 
-    return f"```c\n{snippet}\n```"
+    # Use cpp for C++ test files, c for everything else
+    lang = "cpp" if rel_path.endswith('.cpp') else "c"
+    return f"```{lang}\n{snippet}\n```"
 
 # --- MAIN PROCESSING ---
 
