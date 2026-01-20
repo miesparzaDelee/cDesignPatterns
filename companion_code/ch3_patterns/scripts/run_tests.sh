@@ -43,9 +43,13 @@ if [ -n "$CPPUTEST_HOME_ARG" ]; then
     export CPPUTEST_HOME="$CPPUTEST_HOME_ARG"
 elif [ -n "$CPPUTEST_HOME" ]; then
     : # Already set
+# ... existing checks ...
 elif [ -d "$HOME/cpputest" ]; then
     export CPPUTEST_HOME="$HOME/cpputest"
     echo "  - CPPUTEST_HOME: $CPPUTEST_HOME (Auto-detected)"
+elif [ -d "/usr/share/cpputest" ]; then
+    export CPPUTEST_HOME="/usr/share/cpputest"
+    echo "  - CPPUTEST_HOME: $CPPUTEST_HOME (Auto-detected System Package)"
 else
     echo "ERROR: CPPUTEST_HOME not set."
     exit 1

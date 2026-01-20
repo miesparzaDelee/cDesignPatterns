@@ -8,6 +8,13 @@ ch3_.md
   ch3_2.md
   ch3_3.md
   ch3_4.md
+  ch3_5.md
+  ch3_6.md
+  ch3_7.md
+  ch3_8.md
+  ch3_9.md
+  ch3_10.md
+  ch3_11.md
 
 # --- Core Patterns ---
 # object_pattern.md  <-- This one is hidden/commented out
