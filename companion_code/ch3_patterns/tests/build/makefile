@@ -31,10 +31,10 @@ WORKSPACE_PATH ?= /workspace/
 # SRC_FILES: Explicit individual files
 SRC_FILES += $(WORKSPACE_PATH)/src/rectangle.c
 SRC_FILES += $(WORKSPACE_PATH)/src/circle.c
-SRC_FILES += $(WORKSPACE_PATH)/src/shape_rectangle.c
-SRC_FILES += $(WORKSPACE_PATH)/src/shape_circle.c
-SRC_FILES += $(WORKSPACE_PATH)/src/shape_api.c
 SRC_FILES += $(WORKSPACE_PATH)/src/triangle.c
+#SRC_FILES += $(WORKSPACE_PATH)/src/shape_rectangle.c
+#SRC_FILES += $(WORKSPACE_PATH)/src/shape_circle.c
+#SRC_FILES += $(WORKSPACE_PATH)/src/shape_api.c
 # SRC_DIRS: Directories to search for .c and .cpp files
 # Note: You can append multiple dirs using +=
 # SRC_DIRS += $(WORKSPACE_PATH)/src/
@@ -42,9 +42,12 @@ SRC_FILES += $(WORKSPACE_PATH)/src/triangle.c
 # --- Test Code Configuration ---
 # TEST_SRC_FILES: Explicit individual test files (often the main runner)
 TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/AllTests.cpp
+TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/rectagleTests.cpp
+TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/circleTests.cpp
+TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/triangleTests.cpp
 
 # TEST_SRC_DIRS: Directories containing test source code
-TEST_SRC_DIRS += $(WORKSPACE_PATH)/tests/srctest
+#TEST_SRC_DIRS += $(WORKSPACE_PATH)/tests/srctest
 
 # --- Mocks and Stubs ---
 # MOCKS_SRC_DIRS: Directories for mocks (GoogleMock or CppUMock) and stubs.

@@ -1,33 +1,18 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#ifndef SHAPE_CIRCLE_H
+#define SHAPE_CIRCLE_H
 
 #include <stdint.h>
 #include <stdbool.h>
 
-// We must expose the SIZE so the user can allocate memory.
-// Note: If the internal struct grows, this must be updated manually.
-#define CIRCLE_SIZE    (2)      // 2 elements 
-typedef struct {
-    uint32_t _reserved[CIRCLE_SIZE];
-} scircle_memory_t;
+#include "circle.h"
+#include "shape.h"
 
-// The Opaque Handle
-typedef struct scircle * hsCircle_t;
+typedef struct{
+    shape_t base;
+    circle_memory_t raw_memory;
+    hCircle_t circle;
+}shape_circle_t;
 
-// Configuration Struct
-typedef struct {
-    uint32_t radius;
-} scircle_config_t;
+void shapeCircle_init(shape_circle_t * self, circle_config_t *config);
 
-// Initialization now takes a pointer to the RAW storage
-hsCircle_t scircle_init(scircle_memory_t *mem, scircle_config_t *config);
-
-void scircle_updateRadius(hsCircle_t self, uint32_t radius);
-
-uint32_t scircle_getRadius(hsCircle_t self);
-
-float scircle_getArea(hsCircle_t self);
-
-uint32_t scircle_getPerimeter(hsCircle_t self);
-
-#endif // CIRCLE_H
+#endif // SHAPE_CIRCLE_H
