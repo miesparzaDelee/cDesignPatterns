@@ -105,14 +105,21 @@ We have organized these standards into four main categories:
 **Rationale**: clearly distinguishes types from variables.
 ] -->
 
-<!--raw-typst #convention(id: "NC-04", title: "Macro Naming")[
+<!--raw-typst #convention(id: "NC-04", title: "Handle Typedef Prefix")[
+**Standard**: When passing pointers to structs through APIs, define a handle typedef prefixed with `h` (e.g., `hCircle_t`, `hDevice_t`) instead of using the raw pointer type.
+**Detail**: A handle is a typedef to a pointer: `typedef struct myStruct * hMyStruct_t;`. This can be used for both visible structs (Object Pattern) and opaque structs (Opaque Pattern).
+
+**Rationale**: Using handles improves API readability and reduces clutter. Instead of `myFunc(&myObject)` everywhere, you use `myFunc(myHandle)`. It also provides a clear signal that this type is meant to be passed by reference, and makes the API more consistent and easier to refactor.
+] -->
+
+<!--raw-typst #convention(id: "NC-05", title: "Macro Naming")[
 **Standard**: Macros and definitions should be in UPPER_CASE with underscores (e.g., `MOD_NAME_FEATURE_ENABLE`).
 
 **Rationale**: Follows standard C conventions for preprocessor directives.
 ] -->
 
 #### Internal/Static Scope
-<!--raw-typst #convention(id: "NC-05", title: "Private Naming")[
+<!--raw-typst #convention(id: "NC-06", title: "Private Naming")[
 **Standard**: Static variables and functions can follow any clear convention as their context is local.
 **Recommendation**: Common practice is to prefix with `s_` or `_` to denote private scope.
 ] -->
