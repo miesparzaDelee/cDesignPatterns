@@ -1,1 +1,11 @@
 # Design Patterns for Embedded modular development
+- Object
+- Opaque
+- Private
+- Singleton
+- Inheritance
+- Api/vtable
+- Factory
+- Simple Callback
+- Observer
+- Intrusive callback
