@@ -281,6 +281,16 @@ TEST(Module, Init_StateIsReset) {
 **Rationale**: Provides a consistent starting point for all developers.
 ] -->
 
+<!--raw-typst #convention(id: "UT-09", title: "Build and Test Automation Scripts")[
+**Standard**: Each library should include a `scripts/` folder at the module root containing:
+- `run_tests.sh`: A shell script for building and running tests on Linux (the primary implementation)
+- `invoke_wsl_tests.ps1`: A PowerShell wrapper that invokes the Linux script via WSL on Windows
+
+**Detail**: Use **WSL as the common base environment** for both Windows and Linux development. The Windows PowerShell script should simply call the Linux script through WSL, rather than duplicating logic. This ensures a single source of truth for the build process. Scripts should handle path resolution, CPPUTEST_HOME detection, and build directory management automatically. See `companion_code/ch3_patterns/scripts/` for reference implementations.
+
+**Rationale**: Having a single Linux-based script as the source of truth eliminates duplication and ensures identical behavior across Windows (via WSL), Linux, and CI environments. This approach was discovered through experience—it significantly reduces maintenance burden and prevents platform-specific bugs.
+] -->
+
 ## Debugging and Hardware Emulation
 
 <!--raw-typst #draft[
