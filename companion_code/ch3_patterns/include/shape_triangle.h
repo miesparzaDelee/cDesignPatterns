@@ -14,6 +14,6 @@ typedef struct
 } shape_triangle_t;
 
 // Initialization: base + specific triangle initialization
-void shapeTriangle_init(shape_triangle_t* self, triangle_config_t* config);
+void shapeTriangle_init(shape_triangle_t* self, triangle_config_t* t_conf, shape_config_t* s_conf);
 
 #endif // SHAPE_TRIANGLE_H

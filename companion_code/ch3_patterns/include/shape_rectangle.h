@@ -12,6 +12,6 @@ typedef struct {
    rectangle_t rect;
 } shape_rectangle_t;
 
-void shapeRect_init(shape_rectangle_t * self, rect_config_t * conf);
-
+void shapeRect_init(shape_rectangle_t * self, rect_config_t * r_conf, shape_config_t * s_conf);
+   
 #endif // RECTANGLE_H

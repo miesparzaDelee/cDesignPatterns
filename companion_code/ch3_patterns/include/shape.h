@@ -21,4 +21,14 @@ typedef struct {
    bool visible;        // 0 = hidden, 1 = visible
 } shape_t;
 
+
+typedef struct
+{
+   shape_type_t type;
+   uint32_t color;
+   bool visible;
+}shape_config_t;
+
+void shape_init(shape_t *self, shape_config_t *config);
+
 #endif // SHAPE_BASE_H
