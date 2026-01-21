@@ -36,6 +36,10 @@ SRC_FILES += $(WORKSPACE_PATH)/src/shape.c
 SRC_FILES += $(WORKSPACE_PATH)/src/shape_rectangle.c
 SRC_FILES += $(WORKSPACE_PATH)/src/shape_circle.c
 SRC_FILES += $(WORKSPACE_PATH)/src/shape_triangle.c
+SRC_FILES += $(WORKSPACE_PATH)/src/api_shape.c
+SRC_FILES += $(WORKSPACE_PATH)/src/api_rectangle.c
+SRC_FILES += $(WORKSPACE_PATH)/src/api_circle.c
+SRC_FILES += $(WORKSPACE_PATH)/src/api_triangle.c
 #SRC_FILES += $(WORKSPACE_PATH)/src/shape_api.c
 # SRC_DIRS: Directories to search for .c and .cpp files
 # Note: You can append multiple dirs using +=
@@ -49,6 +53,7 @@ TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/circleTests.cpp
 TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/triangleTests.cpp	
 
 TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/familyTests.cpp
+TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/vtableTests.cpp
 
 # TEST_SRC_DIRS: Directories containing test source code
 #TEST_SRC_DIRS += $(WORKSPACE_PATH)/tests/srctest
