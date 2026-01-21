@@ -1,4 +1,20 @@
 {
+    "files.exclude": {
+        "build/ch1.md": true,
+        "build/ch2.md": true,
+        "build/ch3_.md": true,
+        "build/ch3_1.md": true,
+        "build/ch3_2.md": true,
+        "build/ch3_3.md": true,
+        "build/ch3_4.md": true,
+        "build/ch3_5.md": true,
+        "build/ch3_6.md": true,
+        "build/ch3_7.md": true,
+        "build/ch3_8.md": true,
+        "build/ch3_9.md": true,
+        "build/ch3_10.md": true,
+        "build/ch3_11.md": true,
+    },
     "files.associations": {
         "callbackpattern.h": "c"
     },

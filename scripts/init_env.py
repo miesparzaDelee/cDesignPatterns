@@ -3,7 +3,7 @@ import shutil
 
 # Configuration
 ROOT_DIR = os.getcwd() 
-TEMPLATE_DIR = os.path.join(ROOT_DIR, "vscode_templates")
+TEMPLATE_DIR = os.path.join(ROOT_DIR, "scripts/vscode_templates")
 VSCODE_DIR = os.path.join(ROOT_DIR, ".vscode")
 
 # Add extensions.json to this list
