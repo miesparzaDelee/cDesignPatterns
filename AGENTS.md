@@ -16,26 +16,13 @@ python scripts/build_book.py
 ```bash
 # Run from companion_code/ch3_patterns/scripts/
 ./run_tests.sh
-
-# With specific test target:
-./run_tests.sh -t rectagleTests
-./run_tests.sh -t circleTests
-./run_tests.sh -t triangleTests
-./run_tests.sh -t familyTests
-./run_tests.sh -t vtableTests
-
 # Specify CppUTest location:
 ./run_tests.sh -c /path/to/cpputest
 ```
-
-**Running a single test directly:**
+In VS Code, use the "Test Patterns" task, or run manually:
 ```bash
-cd companion_code/ch3_patterns/tests/build
-make WORKSPACE_PATH=$PWD/../.. rectagleTests
-make WORKSPACE_PATH=$PWD/../.. circleTests
+powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1
 ```
-
-**Available test targets:** `rectagleTests`, `circleTests`, `triangleTests`, `familyTests`, `vtableTests`
 
 ## Code Style Guidelines
 

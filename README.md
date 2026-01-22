@@ -59,6 +59,22 @@ You have two options:
 
 ---
 
+## 🧪 Running Unit Tests
+
+The companion code includes unit tests for the design patterns implemented in `companion_code/ch3_patterns/`. Tests use the CppUTest framework.
+
+### Prerequisites
+- WSL (Windows Subsystem for Linux) or a Linux environment
+- CppUTest installed (auto-detected in WSL)
+
+### Running Tests
+Use the VS Code "Test Patterns" task, or run manually:
+
+```bash
+# Run all tests
+powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1
+```
+
 ## ⚙️ Configuration
 
 ### Changing Book Metadata

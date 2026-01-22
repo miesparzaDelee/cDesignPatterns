@@ -9,6 +9,6 @@ typedef struct {
     triangle_t triangle;    // Composition
 } api_triangle_t;
 
-void api_triangle_init(api_triangle_t *self, triangle_config_t *tri_conf, shape_config_t *shape_conf);
+void api_triangle_init(api_triangle_t *self, triangle_config_t *tri_conf, shape_config_t * shape_conf);
 
 #endif // API_TRIANGLE_H
