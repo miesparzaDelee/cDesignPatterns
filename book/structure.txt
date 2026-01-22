@@ -1,8 +1,8 @@
 # --- Introduction ---
-#intro.md
-#setup_env.md
 ch1.md
 ch2.md
+
+# --- Design Patterns ---
 ch3_.md
   ch3_1.md
   ch3_2.md
@@ -16,10 +16,14 @@ ch3_.md
   ch3_10.md
   ch3_11.md
 
-# --- Core Patterns ---
-# object_pattern.md  <-- This one is hidden/commented out
-#opaque_pattern.md
-#proxy_pattern.md
+# --- Core Templates ---
+ch4.md
+
+# --- Embedded Patterns ---
+ch5.md
+
+# --- Case Studies ---
+ch6.md
 
 # --- Conclusion ---
-#summary.md
+ch7.md

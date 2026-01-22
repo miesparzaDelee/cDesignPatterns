@@ -3,90 +3,107 @@
 ## Progress Tracker
 
 - [X] **1. Introduction**
-- [ ] **2. Recommended Practices and Conventions**
-- [ ] **3. Design Patterns for Embedded Development**
-- [ ] **4. Core Modular Templates**
-- [ ] **5. Embedded Modular Patterns**
-- [ ] **6. Case Studies and Real-World Applications**
-- [ ] **7. Conclusion**
-- [ ] **Appendix A. Repository Guide**
+- [ ] **2. Recommended Practices and Conventions** (First Draft)
+- [ ] **3. Design Patterns for Embedded Development** (In Progress)
+- [ ] **4. Core Modular Templates** (Not Started)
+- [ ] **5. Embedded Modular Patterns** (Not Started)
+- [ ] **6. Case Studies and Real-World Applications** (Not Started)
+- [ ] **7. Conclusion** (Not Started)
+- [ ] **Appendix A. Repository Guide** (Not Started)
 
 ---
 
 ## 1. Introduction
 
-- **Status**: _[First Draft FInished]_  
-- **Notes**:  
-  - Sent to .  
+- **Status**: _Complete_
+- **Notes**:
+  - Ready for final review
+  - Code and tests validated
 
 ---
 
 ## 2. Recommended Practices and Conventions
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - ChatGPT provided the skeleton in [Ch2.md](ch2.md).
-  - [ ] Review structure and add notes for fixes.
-  - Cover coding standards and conventions.  
-  - Detail unit testing strategies and frameworks.  
-  - Include debugging techniques and version control recommendations.  
+- **Status**: _First Draft_
+- **Notes**:
+  - Has section templates and ideas, needs more content
+  - Cover coding standards and conventions.
+  - Detail unit testing strategies and frameworks.
+  - Include debugging techniques and version control recommendations.
 
 ---
 
 ## 3. Design Patterns for Embedded Development
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - Adapt classical design patterns for embedded systems.  
-  - Provide examples (e.g., Singleton, Observer, State Machine).  
-  - Explain how patterns solve common embedded challenges.  
+- **Status**: _In Progress_
+- **Notes**:
+  - Adapt classical design patterns for embedded systems.
+  - Provide examples (e.g., Singleton, Observer, State Machine).
+  - Explain how patterns solve common embedded challenges.
+
+- ch3_1.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_2.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_3.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_4.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_5.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_6.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_7.md ........ Ideas Only - Not properly revised, needs significant work
+- ch3_8.md ........ Ideas Only - Not properly revised, needs significant work
+- ch3_9.md ........ Ideas Only - Not properly revised, needs significant work
+- ch3_10.md ....... Ideas Only - Not properly revised, needs significant work
+- ch3_11.md ....... Ideas Only - Not properly revised, needs significant work
 
 ---
 
 ## 4. Core Modular Templates
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - Develop reusable templates using design patterns.  
-  - Include templates for data structures, state machines, and configuration modules.  
-  - Show how templates improve maintainability and scalability.  
+- **Status**: _Not Started_
+- **Notes**:
+  - No files created yet
+  - Develop reusable templates using design patterns.
+  - Include templates for data structures, state machines, and configuration modules.
+  - Show how templates improve maintainability and scalability.
 
 ---
 
 ## 5. Embedded Modular Patterns
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - Focus on patterns specific to embedded systems.  
-  - Examples: HAL, power/resource management, communication stacks.  
-  - Highlight scalability and real-world applicability.  
+- **Status**: _Not Started_
+- **Notes**:
+  - No files created yet
+  - Focus on patterns specific to embedded systems.
+  - Examples: HAL, power/resource management, communication stacks.
+  - Highlight scalability and real-world applicability.
 
 ---
 
 ## 6. Case Studies and Real-World Applications
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - Provide real-world examples of modular design.  
-  - Compare modular vs. monolithic approaches.  
-  - Include lessons learned and best practices.  
+- **Status**: _Not Started_
+- **Notes**:
+  - No files created yet
+  - Provide real-world examples of modular design.
+  - Compare modular vs. monolithic approaches.
+  - Include lessons learned and best practices.
 
 ---
 
 ## 7. Repository Guide
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - Describe the structure of the code repository.  
-  - Offer instructions for using and adapting templates.  
-  - Include tips for extending the repository.  
+- **Status**: _Not Started_
+- **Notes**:
+  - No files created yet
+  - Describe the structure of the code repository.
+  - Offer instructions for using and adapting templates.
+  - Include tips for extending the repository.
 
 ---
 
 ## 8. Conclusion
 
-- **Status**: _[Not started/In progress/Completed]_  
-- **Notes**:  
-  - Recap the modular design approach.  
-  - Encourage readers to explore and apply modularity in their projects.  
-  - Offer final thoughts on the importance of maintainable and scalable design.  
+- **Status**: _Not Started_
+- **Notes**:
+  - No files created yet
+  - Recap the modular design approach.
+  - Encourage readers to explore and apply modularity in their projects.
+  - Offer final thoughts on the importance of maintainable and scalable design.
