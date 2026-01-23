@@ -8,7 +8,7 @@ api_shape_t* factory_shape_create(api_shape_t * shape, factory_config_t * config
 
     shape_config_t * shape_conf = &config->shape_conf;
 
-    switch (config->type) {
+    switch (shape_conf->type) {
         case SHAPE_TYPE_RECTANGLE: {
             api_rectangle_t *rect = (api_rectangle_t*)shape;
             api_rectangle_init(rect, &config->shape.rect, shape_conf);

@@ -25,35 +25,31 @@ TEST(FactoryPattern, Polymorphism)
     api_circle_t circle = {};
     api_triangle_t triangle = {};
 
-    // 2. Create factory configs
-    factory_config_t conf_rect;
-    conf_rect.type = SHAPE_TYPE_RECTANGLE;
-    conf_rect.shape.rect.width = 10;
-    conf_rect.shape.rect.height = 20;
-    conf_rect.shape_conf.type = SHAPE_TYPE_RECTANGLE;
-    conf_rect.shape_conf.color = 0xFF0000;
-    conf_rect.shape_conf.visible = true;
-
-    factory_config_t conf_circ;
-    conf_circ.type = SHAPE_TYPE_CIRCLE;
-    conf_circ.shape.circle.radius = 5;
-    conf_circ.shape_conf.type = SHAPE_TYPE_CIRCLE;
-    conf_circ.shape_conf.color = 0x00FF00;
-    conf_circ.shape_conf.visible = true;
-
-    factory_config_t conf_tri;
-    conf_tri.type = SHAPE_TYPE_TRIANGLE;
-    conf_tri.shape.triangle.base = 10;
-    conf_tri.shape.triangle.height = 20;
-    conf_tri.shape_conf.type = SHAPE_TYPE_TRIANGLE;
-    conf_tri.shape_conf.color = 0x0000FF;
-    conf_tri.shape_conf.visible = true;
-
-    // 3. Create shapes using factory
     api_shape_t* shapes[3];
-    shapes[0] = factory_shape_create((api_shape_t*)&rect, &conf_rect);
-    shapes[1] = factory_shape_create((api_shape_t*)&circle, &conf_circ);
-    shapes[2] = factory_shape_create((api_shape_t*)&triangle, &conf_tri);
+    
+    // 3. Create shapes using factory
+    factory_config_t conf;
+    conf.shape.rect.width = 10;
+    conf.shape.rect.height = 20;
+    conf.shape_conf.type = SHAPE_TYPE_RECTANGLE;
+    conf.shape_conf.color = 0xFF0000;
+    conf.shape_conf.visible = true;
+    shapes[0] = factory_shape_create((api_shape_t*)&rect, &conf);
+    
+    
+    conf.shape.circle.radius = 5;
+    conf.shape_conf.type = SHAPE_TYPE_CIRCLE;
+    conf.shape_conf.color = 0x00FF00;
+    conf.shape_conf.visible = true;
+    shapes[1] = factory_shape_create((api_shape_t*)&circle, &conf);
+
+    conf.shape.triangle.base = 10;
+    conf.shape.triangle.height = 20;
+    conf.shape_conf.type = SHAPE_TYPE_TRIANGLE;
+    conf.shape_conf.color = 0x0000FF;
+    conf.shape_conf.visible = true;
+    shapes[2] = factory_shape_create((api_shape_t*)&triangle, &conf);
+
 
     // 4. Use generic API pointers (Polymorphism)
     CHECK(shapes[0] != NULL);

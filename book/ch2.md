@@ -163,14 +163,32 @@ We have organized these standards into four main categories:
 **Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
 ] -->
 
+<!--raw-typst #convention(id: "CS-07", title: "Discriminated Unions for Variants")[
+**Standard**: When a function or struct must accept multiple variant types, use a discriminated union combined with a type field rather than separate parameters or void pointers.
+
+**Example**:
+```c
+typedef struct {
+    shape_config_t base;
+    union {
+        rect_config_t rect;
+        circle_config_t circle;
+        triangle_config_t triangle;
+    } variant;
+} factory_config_t;
+```
+
+**Rationale**: Unions allow multiple alternative types to share the same memory region, minimizing struct size. The discriminator field (e.g., `base.type`) ensures type safety at runtime by clearly indicating which union member is active. This technique is essential for memory-constrained embedded systems where every byte matters.
+] -->
+
 #### Source Files
-<!--raw-typst #convention(id: "CS-07", title: "Source Content")[
+<!--raw-typst #convention(id: "CS-08", title: "Source Content")[
 **Standard**: The module header must be included first in the source file.
 
 **Rationale**: Verifies that the header is truly self-contained.
 ] -->
 
-<!--raw-typst #convention(id: "CS-08", title: "Source Organization")[
+<!--raw-typst #convention(id: "CS-09", title: "Source Organization")[
 **Standard**: Follow a strict organization pattern: Includes -> Macros -> Types -> Private Prototypes -> Private Vars -> Implementations.
 
 **Rationale**: Improves code navigability and consistency.
