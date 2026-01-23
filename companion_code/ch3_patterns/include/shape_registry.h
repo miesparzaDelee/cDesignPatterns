@@ -1,6 +1,7 @@
 #ifndef SHAPE_REGISTRY_H
 #define SHAPE_REGISTRY_H
 
+// region: registry_header
 #include <stdint.h>
 #include <stdbool.h>
 #include "api_shape.h"
@@ -25,5 +26,6 @@ void shapeRegistry_Tasks(void);
 bool shapeRegistry_Register(api_shape_t * shape);
 
 bool shapeRegistry_Unregister(api_shape_t * shape);
+// endregion
 
 #endif /* SHAPE_REGISTRY_H */

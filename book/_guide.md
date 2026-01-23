@@ -5,11 +5,11 @@
 - [X] **1. Introduction**
 - [ ] **2. Recommended Practices and Conventions** (First Draft)
 - [ ] **3. Design Patterns for Embedded Development** (In Progress)
-- [ ] **4. Core Modular Templates** (Not Started)
-- [ ] **5. Embedded Modular Patterns** (Not Started)
-- [ ] **6. Case Studies and Real-World Applications** (Not Started)
-- [ ] **7. Conclusion** (Not Started)
-- [ ] **Appendix A. Repository Guide** (Not Started)
+- [ ] **4. Core Modular Templates** (Ideas Only)
+- [ ] **5. Embedded Modular Patterns** (Ideas Only)
+- [ ] **6. Case Studies and Real-World Applications** (Ideas Only)
+- [ ] **7. Repository Guide** (Ideas Only)
+- [ ] **8. Conclusion** (Not Started)
 
 ---
 
@@ -48,7 +48,7 @@
 - ch3_5.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_6.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_7.md ........ Complete (needs revision) - Code + tests pass, requires review
-- ch3_8.md ........ Ideas Only - Not properly revised, needs significant work
+- ch3_8.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_9.md ........ Ideas Only - Not properly revised, needs significant work
 - ch3_10.md ....... Ideas Only - Not properly revised, needs significant work
 - ch3_11.md ....... Ideas Only - Not properly revised, needs significant work
@@ -57,9 +57,9 @@
 
 ## 4. Core Modular Templates
 
-- **Status**: _Not Started_
+- **Status**: _Ideas Only_
 - **Notes**:
-  - No files created yet
+  - Basic skeleton created
   - Develop reusable templates using design patterns.
   - Include templates for data structures, state machines, and configuration modules.
   - Show how templates improve maintainability and scalability.
@@ -68,9 +68,9 @@
 
 ## 5. Embedded Modular Patterns
 
-- **Status**: _Not Started_
+- **Status**: _Ideas Only_
 - **Notes**:
-  - No files created yet
+  - Basic skeleton created
   - Focus on patterns specific to embedded systems.
   - Examples: HAL, power/resource management, communication stacks.
   - Highlight scalability and real-world applicability.
@@ -79,9 +79,9 @@
 
 ## 6. Case Studies and Real-World Applications
 
-- **Status**: _Not Started_
+- **Status**: _Ideas Only_
 - **Notes**:
-  - No files created yet
+  - Basic skeleton created
   - Provide real-world examples of modular design.
   - Compare modular vs. monolithic approaches.
   - Include lessons learned and best practices.
@@ -90,9 +90,9 @@
 
 ## 7. Repository Guide
 
-- **Status**: _Not Started_
+- **Status**: _Ideas Only_
 - **Notes**:
-  - No files created yet
+  - Basic skeleton created
   - Describe the structure of the code repository.
   - Offer instructions for using and adapting templates.
   - Include tips for extending the repository.

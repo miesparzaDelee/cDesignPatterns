@@ -1,6 +1,7 @@
 #include "shape_registry.h"
 #include <string.h>
 
+// region: registry_impl
 static void update_biggest_area(void);
 static void update_biggest_perimeter(void);
 
@@ -65,6 +66,7 @@ bool shapeRegistry_Unregister(api_shape_t * api_shape)
 
     return false;
 }
+// endregion
 
 /* Static helper functions for updating statistics */
 
