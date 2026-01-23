@@ -47,7 +47,7 @@
 - ch3_4.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_5.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_6.md ........ Complete (needs revision) - Code + tests pass, requires review
-- ch3_7.md ........ Ideas Only - Not properly revised, needs significant work
+- ch3_7.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_8.md ........ Ideas Only - Not properly revised, needs significant work
 - ch3_9.md ........ Ideas Only - Not properly revised, needs significant work
 - ch3_10.md ....... Ideas Only - Not properly revised, needs significant work
