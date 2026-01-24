@@ -1,108 +1,86 @@
 # AGENTS.md - C Design Patterns Repository
 
-This repository contains a C design patterns book with a literate programming build system. Code examples live in `companion_code/ch3_patterns/`, tests use CppUTest framework, and the book is built using Python scripts.
+This repo is a C design patterns book with a literate build system. Code examples
+live in `companion_code/ch3_patterns/`, tests use CppUTest, and the book is built
+from Markdown in `book/` with Python scripts.
 
-## Build Commands
+## Collaboration Mindset
+
+Development is a conversation. Follow the workflows in `.agent/workflows/develop_chapter.md` to ensure:
+
+1. **Interactive Design**: Never "dump" a full implementation. Start with headers or skeletons and discuss with the USER.
+2. **Structural Planning**: For text, define the "bones" (paragraphs and relationships) before writing prose.
+3. **Continuous Feedback**: Wait for USER approval after each logical step (Header -> Impl -> Tests -> Text).
+4. **Literate Integration**: Always ensure code and book text support one another.
+
+## Build, Test, Lint Commands
 
 ### Book Build
+
 ```bash
 python scripts/build_book.py
 ```
+
 - Reads Markdown chapters from `book/`
-- Injects C code from `src/` using `{{ file "path" type="..." }}` tags
+- Injects C code from `src/` via `{{ file "path" type="..." }}` tags
 - Outputs hydrated Markdown to `build/` and Typst PDF source
 
-### C Pattern Tests (CppUTest)
+### Unit Tests (CppUTest)
+
+Preferred: run the VS Code task named `Test Patterns`.
+
+CLI equivalents (full suite):
+
 ```bash
-# Run from companion_code/ch3_patterns/scripts/
+# WSL helper wrapper (recommended on Windows)
+powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1
+
+# Direct runner (from companion_code/ch3_patterns/scripts/)
 ./run_tests.sh
-# Specify CppUTest location:
+
+# Specify CppUTest location
 ./run_tests.sh -c /path/to/cpputest
 ```
-In VS Code, use the "Test Patterns" task, or run manually:
+
+Single test (after build, from `companion_code/ch3_patterns/tests/build/`):
+
 ```bash
-powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1
+./patterns_lib_tests -g <TestGroup> -n <TestName>
 ```
 
-## Code Style Guidelines
+Test groups are declared with `TEST_GROUP(...)` in
+`companion_code/ch3_patterns/tests/srctest/*Tests.cpp`.
 
-### Naming Conventions
-- **Types**: Suffix with `_t` (e.g., `shape_t`, `circle_config_t`)
-- **Handles**: Prefix with `h` (e.g., `hCircle_t`, `hShape_t`)
-- **Memory blocks**: Suffix with `_memory_t` for opaque allocation structs
-- **Constants/Macros**: UPPER_SNAKE_CASE (e.g., `CIRCLE_SIZE`, `PI`)
-- **Functions**: `module_functionName` pattern (e.g., `circle_init`, `circle_getArea`)
-- **Private members**: Prefix with underscore in internal structs (e.g., `self->_reserved`)
+### Linting
 
-### Types
-- Use `<stdint.h>` types: `uint8_t`, `uint32_t`, `int32_t`, etc.
-- Use `<stdbool.h>` for boolean values
-- Use `<stddef.h>` for `NULL`, `size_t`
+No dedicated lint command is configured. Use compiler warnings from the CppUTest
+build and keep formatting consistent with the style section below.
 
-### Imports
-- System includes first: `<stdio.h>`, `<stdint.h>`, etc.
-- Local includes second: `"shape.h"`, `"circle.h"`
-- Order: alphabetized within each group
+## Guidelines and Operational Procedures
 
-### Header Guards
-```c
-#ifndef MODULE_NAME_H
-#define MODULE_NAME_H
-// ... content ...
-#endif // MODULE_NAME_H
-```
+To ensure we "start with the right foot" and maintain quality, agents MUST follow these references:
 
-### Error Handling
-- Return `NULL` or error codes for failure
-- Validate input parameters at function entry
-- No exceptions (C does not support them)
+1. **Operational Workflows**:
+   Consult [.agent/workflows/](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/) for session startup and chapter development processes. These are the living instructions for this repository.
 
-### Opaque Pattern (Key Pattern)
-Expose size constants and opaque handles in headers; hide implementation:
-```c
-// In header:
-#define CIRCLE_SIZE (2)
-typedef struct circle * hCircle_t;
-hCircle_t circle_init(circle_memory_t *mem, circle_config_t *config);
+2. **Coding Standards and Conventions**:
+   The primary source of truth for all code style, naming, and testing standards is **[book/ch2.md](file:///c:/Users/Delee_RD/cDesignPatterns/book/ch2.md)**.
+   - Use the IDs (e.g., `NC-01`, `CS-04`) when discussing code reviews or explaining implementations.
+   - When writing book content, explicitly reference these practices to reinforce the book's teachings.
 
-// In source:
-struct circle { uint32_t radius; float area; };
-```
-
-### Code Regions
-Use `// region:name` and `// endregion` comments for extraction in book:
-```c
-void example() {
-    int x = 5;
-    // region:math_logic
-    x = x * 2;
-    // endregion
-}
-```
-
-### Formatting
-- 4-space indentation (no tabs)
-- Opening brace on same line as function/scope
-- Lines wrapped at 80-100 characters
-
-### Memory Management
-- Use explicit `uint8_t` byte arrays for opaque memory blocks
-- Always initialize memory before use with `memset()` or similar
-- Document ownership semantics for all pointer parameters
-
-### Test Conventions
-- Test files follow naming: `*Tests.cpp` (CppUTest convention)
-- Tests use `TEST_GROUP_*` and `TEST_*` macros
-- Mock/stub files in `tests/mocks/`, `tests/stubs/`
+3. **Opaque Pattern (Key Pattern)**:
+   While detailed in Chapter 2, remember the core requirement for this repo: expose size constants and opaque handles in headers; hide implementation details in sources.
 
 ## Literate Programming Tags
 
 In `book/*.md`, inject code with:
-```
+
+```markdown
 {{ file "path/to/file.c" type="TYPE" name="IDENTIFIER" }}
 ```
 
-Types: `whole`, `include`, `define`, `typedef`, `struct`, `function`, `region`, `test_group`, `test`
+Types: `whole`, `include`, `define`, `typedef`, `struct`, `function`,
+`region`, `test_group`, `test`
 
 ## Directory Structure
 
@@ -120,19 +98,23 @@ Types: `whole`, `include`, `define`, `typedef`, `struct`, `function`, `region`, 
 
 - `companion_code/ch3_patterns/tests/build/Makefile` - Test build configuration
 - `companion_code/ch3_patterns/scripts/run_tests.sh` - Test runner script
+- `companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1` - WSL test helper
 - `scripts/build_book.py` - Book generation script
 
 ## Book Development
 
-**IMPORTANT**: Before working on any chapter, check `book/_guide.md` for the current status and notes. This is the single source of truth for book progress.
+Before editing chapters, check `book/_guide.md` for status and notes.
 
-- **Complete** - Ready for final review, code and tests validated
-- **First Draft** - Has section templates and ideas, needs more content
-- **Ideas Only** - Initial concepts, not properly revised, needs significant work
-- **Not Started** - No content created yet
+Status meanings:
 
-When completing or modifying chapter content:
-1. Update `_guide.md` with new status and notes
+- **Complete** - Final review ready, code and tests validated
+- **First Draft** - Section templates and ideas, needs more content
+- **Ideas Only** - Initial concepts, needs revision
+- **Not Started** - No content yet
+
+When modifying chapter content:
+
+1. Update `book/_guide.md` with new status and notes
 2. Ensure code examples compile and tests pass
 3. Update `book/structure.txt` if adding new chapters
-4. Run `python scripts/build_book.py` to verify build succeeds
+4. Run `python scripts/build_book.py` to verify the build succeeds
