@@ -26,10 +26,14 @@
 
 - **Status**: _First Draft_
 - **Notes**:
-  - Has section templates and ideas, needs more content
-  - Cover coding standards and conventions.
-  - Detail unit testing strategies and frameworks.
-  - Include debugging techniques and version control recommendations.
+  - Split into `book/ch2_1.md` (coding standards) and `book/ch2_2.md` (unit testing)
+  - Convention tracker
+    - FO-01..FO-05 (File/Folder Organization) - Complete
+    - NC-01..NC-06 (Naming) - Complete
+    - CS-01..CS-06, CS-08..CS-09 (Code Structure) - Complete
+    - DO-01..DO-02 (Documentation) - Complete
+    - UT-01..UT-09 (Unit Testing) - Draft
+  - Debugging/Emulation section still a draft
 
 ---
 
