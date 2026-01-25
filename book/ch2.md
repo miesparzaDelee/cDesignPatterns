@@ -47,61 +47,191 @@ We have organized these standards into four main categories:
 
 ### File and Folder Organization
 
-#### Library and Project Structure
+<convention id="FO-01" title="Library Organization">
 
-<convention id="FO-02" title="Library Organization">
+**Standard**: A library groups related modules in one folder with `inc/` for public headers and `src/` for source files.
 
-**Standard**: A set of modules should be kept in the same folder (Library). Headers are included in an `inc` folder, source files in the library root or `src` folder.
+**Rationale**: A consistent layout makes the API boundary obvious and eliminates guesswork when navigating unfamiliar libraries.
 
-**Rationale**: Promotes modularity and clean separation of interface and implementation within libraries.
+**Detail**: `inc/` is the exported API; `src/` is private implementation.
+
+**Example**:
+
+```text
+my_library/
+├── inc/                    # Public API headers
+│   ├── uart.h
+│   ├── spi.h
+│   └── i2c.h
+├── src/                    # Implementation files
+│   ├── uart.c
+│   ├── spi.c
+│   └── i2c.c
+├── test/                   # Unit tests (see UT-01)
+├── build/                  # Build scripts (see FO-02)
+└── dist/                   # Build artifacts (see FO-02)
+```
+
 </convention>
 
-<convention id="FO-03" title="Library Build Artifacts">
-**Standard**: Libraries should have a `build` folder for instructions/scripts and a `dist` folder for the built artifact.
+<convention id="FO-02" title="Library Build Artifacts">
 
-**Rationale**: Standardizes the build methodology across different libraries.
+**Standard**: Every library has `build/` for build scripts and `dist/` for build outputs.
+
+**Rationale**: A fixed build layout keeps CI, IDE tasks, and local builds aligned.
+
+**Detail**: `build/` holds scripts/configs (Makefiles, CMake, shell scripts). `dist/` is for artifacts (`.a`, `.so`, `.dll`) and must be gitignored.
+
+**Example**:
+
+```text
+my_library/
+├── build/
+│   ├── Makefile            # Build instructions
+│   ├── CMakeLists.txt      # Alternative build system
+│   └── compile.sh          # Convenience script
+└── dist/
+    ├── libmylibrary.a      # Static library output
+    └── libmylibrary.so     # Shared library output (if applicable)
+```
+
+**Workflow**: A typical build command might be:
+
+```bash
+cd my_library/build
+make clean && make
+# Artifact appears in ../dist/
+```
+
 </convention>
 
-<convention id="FO-04" title="Library Independence">
-**Standard**: Libraries should be groups of modules organized by purpose, usable independently, and imported as git submodules.
+<convention id="FO-03" title="Library Independence">
 
-**Rationale**: Allows for independent versioning, updating, and reuse across multiple projects.
+**Standard**: A library is a self-contained set of modules that can be versioned and reused independently, typically consumed as a git submodule.
+
+**Rationale**: Independent libraries enable controlled upgrades and reproducible builds across projects.
+
+**Detail**: Each library repository includes its own:
+
+* `.gitignore` - Excludes build artifacts and IDE-specific files
+* `README.md` - Library purpose, usage instructions, dependencies, and examples
+* `LICENSE` - Licensing terms (critical for reuse across projects)
+* Build scripts in `build/` (see FO-02)
+
+These root-level files travel with the library when imported.
+
+**Distribution Modes**: Libraries can be consumed in two ways:
+
+1. **Development mode**: Include the library's `inc/` folder directly in your project's include path. Use this during active development or when modifying the library.
+2. **Release mode**: Link against the pre-built artifact from `dist/` and include only necessary headers. Use this for stable dependencies.
+
+**Example**:
+
+```text
+project/
+├── lib/                    # Git submodules
+│   ├── uart_lib/          # Independent library
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   ├── inc/
+│   │   ├── src/
+│   │   ├── build/
+│   │   └── dist/
+│   └── sensor_lib/        # Another independent library
+│       ├── .gitignore
+│       ├── README.md
+│       └── ...
+└── main/                  # Your application
+```
+
 </convention>
 
-#### The Module Unit
-<convention id="FO-01" title="Module Structure">
-**Standard**: A module must consist of exactly one public header file (`.h`) and one, same-named private source file (`.c`).
+<convention id="FO-04" title="Module Structure">
 
-**Rationale**: Enforces clear boundaries. The header is the contract; the source is the implementation.
+**Standard**: A module is the smallest independently testable unit in a library and must include one primary public header (`.h`) and one same-named source file (`.c`).
+
+**Rationale**: The 1:1 header/source mapping makes the contract and implementation easy to locate.
+
+**Detail**: The primary header and source share the same base name (e.g., `uart.h` and `uart.c`). If further abstraction of functionality within the module is needed to improve organization, use sub-modules (FO-05).
+
+**Supplemental Headers**: Modules may use additional headers under `inc/<module>/`, if needed, to organize large APIs (e.g., `inc/graphics/rendering.h`) or private definitions (e.g., `inc/<module>/private/helper.h`).
+
+**Example**:
+
+```text
+my_library/
+├── inc/
+│   ├── uart.h          # Public interface
+│   └── uart/
+│       └── uart_defs.h # Supplemental header (if needed)
+└── src/
+    └── uart.c          # Implementation
+```
+
 </convention>
 
-#### Sub-modules
 <convention id="FO-05" title="Sub-module Splitting">
-**Standard**: If a module becomes too complex, split it into sub-modules (additional .h/.c pairs). Submodule headers should be clearly named or placed in subfolders (e.g., `#include "module/submodule.h"`).
 
-**Rationale**: Keeps file sizes manageable and complexity encapsulated without breaking the module abstraction.
+**Standard**: Sub-modules are internal modules used only by the parent module's `.c` file; they are testable but not part of the public API.
+
+**Rationale**: Keeps the public interface small while allowing complex internals to be split into focused units.
+
+**Detail**: Sub-modules follow the same `.h`/`.c` pairing as regular modules. Their headers are placed in `inc/<module>/` subfolders (following the same pattern as supplemental headers in FO-04) to maintain consistent organization.
+
+**Example**:
+
+```text
+my_library/
+├── inc/
+│   ├── uart.h              # Public interface
+│   └── uart/
+│       ├── uart_defs.h     # Supplemental header (if needed)
+│       ├── uart_rx.h       # Sub-module 1
+│       └── uart_tx.h       # Sub-module 2
+└── src/
+    ├── uart.c              # Main module
+    ├── uart_rx.c           # Sub-module 1 implementation
+    └── uart_tx.c           # Sub-module 2 implementation
+```
+
 </convention>
 
 ### Naming Conventions
 
-#### Public API
 <convention id="NC-01" title="Public Function/Type Naming">
-**Standard**: All public functions and types must be prefixed with the module name.
-**Style**: Use a mixed convention of underscores and camelCase (e.g., `mod_nameFunction_otherCharacteristics`).
-**Detail**: Use underscores (`_`) to separate the module prefix and major concerns, and camelCase (`nameFunction`) for the specific item name.
 
-**Rationale**: Simulates namespacing in C and prevents symbol collisions.
+**Standard**: All public functions and types must be prefixed with the module name.
+
+**Rationale**: Simulates namespacing in C and prevents symbol collisions. In large codebases with multiple libraries, unprefixed names like `init()` or `buffer_t` would clash. The module prefix ensures every symbol is globally unique and self-documenting.
+
+**Style**: Use a mixed convention of underscores and camelCase (e.g., `mod_nameFunction_otherCharacteristics`).
+
+**Detail**: Use underscores (`_`) to separate the module prefix and major concerns, and camelCase (`nameFunction`) for the specific item name. This creates natural visual grouping when viewing API lists.
+
+**Example**:
+
+```c
+// Module: uart
+void uart_init(uart_config_t* config);          // Lifecycle function
+void uart_sendByte(uint8_t byte);               // Action function  
+uart_status_t uart_getStatus(void);             // Query function
+
+// Module: lcd
+typedef struct lcd_config_t {                   // Type with module prefix
+    uint8_t width;
+    uint8_t height;
+} lcd_config_t;
+```
+
 </convention>
 
-#### Module Lifecycle
 <convention id="NC-02" title="Lifecycle Pattern">
-**Standard**: Modules should follow a standardized `init`, `deinit`, and `task` lifecycle pattern where applicable.
 
 **Rationale**: Consistent naming and usage patterns from the start lead to predictable behavior and better maintainability.
 </convention>
 
-#### Types and Macros
 <convention id="NC-03" title="Typedef Suffix">
+
 **Standard**: User-created typedefs should end with a `_t` suffix.
 
 **Rationale**: clearly distinguishes types from variables.
@@ -121,6 +251,7 @@ We have organized these standards into four main categories:
 </convention>
 
 #### Internal/Static Scope
+
 <convention id="NC-06" title="Private Naming">
 **Standard**: Static variables and functions can follow any clear convention as their context is local.
 **Recommendation**: Common practice is to prefix with `s_` or `_` to denote private scope.
@@ -129,6 +260,7 @@ We have organized these standards into four main categories:
 ### Code Structure and Layout
 
 #### Header Files
+
 <convention id="CS-01" title="Header Content">
 **Standard**: Header files must be self-contained (include all necessary dependencies) and use include guards to prevent multiple inclusions.
 
@@ -169,6 +301,7 @@ We have organized these standards into four main categories:
 **Standard**: When a function or struct must accept multiple variant types, use a discriminated union combined with a type field rather than separate parameters or void pointers.
 
 **Example**:
+
 ```c
 typedef struct {
     shape_config_t base;
@@ -184,6 +317,7 @@ typedef struct {
 </convention>
 
 #### Source Files
+
 <convention id="CS-08" title="Source Content">
 **Standard**: The module header must be included first in the source file.
 
@@ -296,6 +430,7 @@ TEST(Module, Init_StateIsReset) {
     // Act
     // Assert
 }
+
 ```
 
 **Rationale**: Provides a consistent starting point for all developers.
