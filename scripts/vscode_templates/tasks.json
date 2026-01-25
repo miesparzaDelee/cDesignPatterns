@@ -45,7 +45,7 @@
                 "-ExecutionPolicy",
                 "Bypass",
                 "-File",
-                "${workspaceFolder}/companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1"
+                "${workspaceFolder}/companion_code/ch3_patterns/build/invoke_wsl_tests.ps1"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/companion_code/ch3_patterns"

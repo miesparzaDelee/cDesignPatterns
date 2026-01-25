@@ -24,7 +24,7 @@ done
 # --- 2. Resolve Module Root ---
 if [ -z "$MODULE_ROOT" ]; then
     # MANUAL RUN FALLBACK:
-    # If -w is missing, assume we are in /scripts/ and the root is one level up.
+    # If -w is missing, assume we are in /build/ and the root is one level up.
     SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
     MODULE_ROOT="$(dirname "$SCRIPT_DIR")"
     echo "  - Module Root: $MODULE_ROOT (Auto-detected)"

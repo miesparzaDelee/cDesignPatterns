@@ -79,7 +79,7 @@ Use the VS Code "Test Patterns" task, or run manually:
 
 ```bash
 # Run all tests
-powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1
+powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/build/invoke_wsl_tests.ps1
 ```
 
 ## ⚙️ Configuration

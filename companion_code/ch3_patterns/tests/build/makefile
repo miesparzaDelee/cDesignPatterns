@@ -83,9 +83,14 @@ INCLUDE_DIRS += $(WORKSPACE_PATH)/tests/stubs/include
 
 # --- Build Artifacts ---
 # Where object files (.o) and dependency files (.d) go
-CPPUTEST_OBJS_DIR = test-obj
-# Where the final static library (.a) goes
-CPPUTEST_LIB_DIR = test-lib
+TEST_OUTPUT_DIR = ../out
+
+CPPUTEST_OBJS_DIR = $(TEST_OUTPUT_DIR)/test-obj
+CPPUTEST_LIB_DIR = $(TEST_OUTPUT_DIR)/test-lib
+
+# Put the test executable in the output directory.
+# Default is $(COMPONENT_NAME)_tests; we keep that convention for reusability.
+TEST_TARGET = $(TEST_OUTPUT_DIR)/$(COMPONENT_NAME)_tests
 
 # ==========================================
 #      COMPILER CONFIGURATION 

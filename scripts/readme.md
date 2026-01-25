@@ -101,7 +101,7 @@ y = x * 2;
 
 ## 6. Running Unit Tests
 
-The companion code tests are run from `companion_code/ch3_patterns/scripts/`.
+The companion code tests are run from `companion_code/ch3_patterns/build/`.
 
 * **`run_tests.sh`**: Bash script to run CppUTest suites.
 * **`invoke_wsl_tests.ps1`**: PowerShell wrapper for running tests in WSL from Windows.
@@ -109,14 +109,14 @@ The companion code tests are run from `companion_code/ch3_patterns/scripts/`.
 ### Usage
 
 ```bash
-# Run all tests (from companion_code/ch3_patterns/scripts/)
+# Run all tests (from companion_code/ch3_patterns/build/)
 ./run_tests.sh
 
 # Run specific test suite
 ./run_tests.sh -t factoryTests
 
 # From Windows with WSL
-powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1 -t factoryTests
+powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/build/invoke_wsl_tests.ps1 -t factoryTests
 ```
 
 Available test suites: rectagleTests, circleTests, triangleTests, familyTests, vtableTests, factoryTests

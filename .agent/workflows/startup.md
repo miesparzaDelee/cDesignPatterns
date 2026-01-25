@@ -17,7 +17,7 @@ To ensure a session starts correctly, follow these steps:
    - Run `python scripts/build_book.py` to check the literate build system.
 
    // turbo
-   - Run `powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1` to verify unit tests.
+   - Run `powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/build/invoke_wsl_tests.ps1` to verify unit tests.
 
 4. **Initialize Task State**:
    Create or update `task.md` in the brain directory to track the current session's objectives.

@@ -9,7 +9,7 @@
     3. Preserves the "Exit 0 on Failure" logic for VS Code Task compatibility.
     
 .EXAMPLE
-    .\scripts\invoke_wsl_tests.ps1 -t clean
+    .\build\invoke_wsl_tests.ps1 -t clean
 #>
 
 param(
@@ -49,7 +49,7 @@ if (-not (Get-Command wsl -ErrorAction SilentlyContinue)) {
 }
 
 # --- 3. Sanitize the Linux Script (CRLF Fix) ---
-$LinuxScriptRelPath = "./scripts/run_tests.sh"
+$LinuxScriptRelPath = "./build/run_tests.sh"
 $SedArgs = @()
 if ($Distro) { $SedArgs += "-d", $Distro }
 $SedArgs += "sed", "-i", "'s/\r$//'", $LinuxScriptRelPath

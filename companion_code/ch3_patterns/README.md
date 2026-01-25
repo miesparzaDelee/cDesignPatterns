@@ -7,7 +7,7 @@ This directory contains the C implementation of design patterns from the book "C
 - `src/`: C source files for the patterns
 - `include/`: Public headers
 - `tests/`: Unit tests using CppUTest
-- `scripts/`: Test runner scripts
+- `build/`: Test runner scripts
 
 ## Running Tests
 
@@ -18,10 +18,10 @@ This directory contains the C implementation of design patterns from the book "C
 ### Commands
 ```bash
 # Run all tests
-./scripts/invoke_wsl_tests.ps1
+./build/invoke_wsl_tests.ps1
 
 # Run specific pattern tests
-./scripts/invoke_wsl_tests.ps1 -t factoryTests
+./build/invoke_wsl_tests.ps1 -t factoryTests
 ```
 
 Available test suites: rectagleTests, circleTests, triangleTests, familyTests, vtableTests, factoryTests

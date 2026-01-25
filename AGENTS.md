@@ -33,9 +33,9 @@ CLI equivalents (full suite):
 
 ```bash
 # WSL helper wrapper (recommended on Windows)
-powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1
+powershell -ExecutionPolicy Bypass -File companion_code/ch3_patterns/build/invoke_wsl_tests.ps1
 
-# Direct runner (from companion_code/ch3_patterns/scripts/)
+# Direct runner (from companion_code/ch3_patterns/build/)
 ./run_tests.sh
 
 # Specify CppUTest location
@@ -106,8 +106,8 @@ Tracked tags and attributes live in `docs/markdown_tags.md`.
 ## Key Files
 
 - `companion_code/ch3_patterns/tests/build/Makefile` - Test build configuration
-- `companion_code/ch3_patterns/scripts/run_tests.sh` - Test runner script
-- `companion_code/ch3_patterns/scripts/invoke_wsl_tests.ps1` - WSL test helper
+- `companion_code/ch3_patterns/build/run_tests.sh` - Test runner script
+- `companion_code/ch3_patterns/build/invoke_wsl_tests.ps1` - WSL test helper
 - `scripts/build_book.py` - Book generation script
 
 ## Book Development
