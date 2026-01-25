@@ -212,7 +212,7 @@ my_library/
 
 ```c
 // Module: uart
-void uart_init(uart_config_t* config);          // Lifecycle function
+void uart_init(uart_config_t* config);          // init function
 void uart_sendByte(uint8_t byte);               // Action function  
 uart_status_t uart_getStatus(void);             // Query function
 
@@ -225,95 +225,380 @@ typedef struct lcd_config_t {                   // Type with module prefix
 
 </convention>
 
-<convention id="NC-02" title="Lifecycle Pattern">
+<convention id="NC-02" title="Function Semantic Naming">
 
-**Rationale**: Consistent naming and usage patterns from the start lead to predictable behavior and better maintainability.
+**Standard**: Use consistent semantic suffixes for functions to communicate their purpose and usage pattern across the codebase.
+
+**Rationale**: Repeated use of the same suffixes creates a shared vocabulary across modules, enabling developers to immediately recognize function behavior without reading implementation details. This standardization reduces cognitive load and improves code navigability.
+
+**Detail**: Common semantic suffixes include lifecycle management (`_init`, `_deinit`, `_start`, `_stop`), periodic operations (`_task`, `_update`), data processing (`_process`), and event handling (`_handle`). Apply these patterns consistently where they fit, but don't force them where they don't naturally apply. The goal is recognition, not rigid compliance.
+
+**Example**:
+
+```c
+// Module: uart (lifecycle + control)
+void uart_init(uart_t* self, uart_config_t* config);
+void uart_start(uart_t* self);
+void uart_stop(uart_t* self);
+void uart_deinit(uart_t* self);
+
+// Module: sensor (lifecycle + periodic task)
+void sensor_init(sensor_t* self, sensor_config_t* config);
+void sensor_task(sensor_t* self);                        // Called periodically
+void sensor_deinit(sensor_t* self);
+
+// Module: filter (lifecycle + data processing)
+void filter_init(filter_t* self, filter_config_t* config);
+void filter_process(filter_t* self, float* data);       // Data transformation
+```
+
 </convention>
 
 <convention id="NC-03" title="Typedef Suffix">
 
 **Standard**: User-created typedefs should end with a `_t` suffix.
 
-**Rationale**: clearly distinguishes types from variables.
+**Rationale**: Clearly distinguishes types from variables and follows the standard C convention used in POSIX and embedded systems.
+
+**Detail**: Apply the `_t` suffix to all user-defined types including structs, enums, unions, and function pointers. This creates visual consistency and immediately signals that an identifier is a type, not a variable or function.
+
+**Example**:
+
+```c
+// Struct typedef
+typedef struct {
+    uint32_t baudrate;
+    uint8_t data_bits;
+} uart_config_t;
+
+// Enum typedef
+typedef enum {
+    STATUS_OK,
+    STATUS_ERROR,
+    STATUS_BUSY
+} status_t;
+
+// Union typedef
+typedef union {
+    uint32_t word;
+    uint8_t bytes[4];
+} data_t;
+
+// Function pointer typedef
+typedef void (*callback_t)(void* context);
+```
+
 </convention>
 
-<convention id="NC-04" title="Handle Typedef Prefix">
+<convention id="NC-04" title="Handle Prefix">
+
 **Standard**: When passing pointers to structs through APIs, define a handle typedef prefixed with `h` (e.g., `hCircle_t`, `hDevice_t`) instead of using the raw pointer type.
-**Detail**: A handle is a typedef to a pointer: `typedef struct myStruct * hMyStruct_t;`. This can be used for both visible structs (Object Pattern) and opaque structs (Opaque Pattern).
 
 **Rationale**: Using handles improves API readability and reduces clutter. Instead of `myFunc(&myObject)` everywhere, you use `myFunc(myHandle)`. It also provides a clear signal that this type is meant to be passed by reference, and makes the API more consistent and easier to refactor.
+
+**Detail**: A handle is a typedef to a pointer: `typedef struct myStruct * hMyStruct_t;`. This can be used for both visible structs (Object Pattern) and opaque structs (Opaque Pattern).
+
+**Example**:
+
+```c
+// Define handle typedef
+typedef device_t* hDevice_t;
+
+// API using handles
+void device_init(hDevice_t self, device_config_t* config);
+void device_process(hDevice_t self);
+
+// Usage
+device_t myDevice;
+hDevice_t handle = &myDevice;
+device_init(handle, &config);    // Clean and clear
+device_process(handle);
+
+// Without handles (for comparison)
+device_init(&myDevice, &config); // Direct pointer, less semantic clarity
+```
+
 </convention>
 
 <convention id="NC-05" title="Macro Naming">
+
 **Standard**: Macros and definitions should be in UPPER_CASE with underscores (e.g., `MOD_NAME_FEATURE_ENABLE`).
 
-**Rationale**: Follows standard C conventions for preprocessor directives.
+**Rationale**: Follows standard C conventions for preprocessor directives and makes macros immediately distinguishable from functions and variables.
+
+**Detail**: Apply UPPER_CASE to all preprocessor definitions including constants, feature flags, include guards, and function-like macros. This visual distinction prevents accidental misuse and signals that the identifier has preprocessor semantics (text substitution, no type safety). In header files, prefix public macros with the module name to avoid naming conflicts (e.g., `UART_MAX_BUFFER_SIZE`). In source files, simpler names can be used since the context is local and the macro won't be exposed externally.
+
+**Example**:
+
+```c
+// uart.h - Header file (public macros with module prefix)
+#ifndef UART_H
+#define UART_H
+
+#define UART_MAX_BUFFER_SIZE 256
+#define UART_DEFAULT_BAUDRATE 9600
+#define UART_ENABLE_DMA 1
+
+void uart_init(uart_t* self, uart_config_t* config);
+
+#endif // UART_H
+
+// uart.c - Source file (local macros can use simpler names)
+#define RETRY_COUNT 3
+#define TIMEOUT_MS 100
+
+// These macros are only visible within this .c file
+```
+
 </convention>
 
 #### Internal/Static Scope
 
 <convention id="NC-06" title="Private Naming">
+
 **Standard**: Static variables and functions can follow any clear convention as their context is local.
-**Recommendation**: Common practice is to prefix with `s_` or `_` to denote private scope.
-</convention>
 
-### Code Structure and Layout
+**Rationale**: Since static identifiers are file-scoped, naming conflicts are not a concern. However, a visual distinction helps readers quickly identify private vs public symbols.
 
-#### Header Files
+**Detail**: Common MISRA-compliant prefixes include `priv_` (private), `s_` (static), or `local_`. While leading underscore (`_`) is visually appealing and commonly used, it violates MISRA-C Rule 21.1 (reserved identifiers). For projects requiring MISRA compliance, use compliant alternatives. For non-MISRA projects, choose based on team preference and consistency.
 
-<convention id="CS-01" title="Header Content">
-**Standard**: Header files must be self-contained (include all necessary dependencies) and use include guards to prevent multiple inclusions.
-
-**Rationale**: Ensures modules can be included in any order without compilation errors.
-</convention>
-
-<convention id="CS-02" title="Header Organization">
-**Standard**: Follow a strict organization pattern: License -> Guard -> Includes -> Defines -> Types -> Prototypes.
-
-**Rationale**: Predictable layout makes reading APIs easier for other developers.
-</convention>
-
-<convention id="CS-03" title="Configuration Headers">
-**Standard**: Definitions or configuration options should be kept in a separate header file (potentially as a submodule).
-
-**Rationale**:Separates configuration from implementation, facilitating porting and customization.
-</convention>
-
-<convention id="CS-04" title="Design First">
-**Standard**: Header files should be considered signed contracts; they must be designed, reviewed, and finalized before implementation begins.
-
-**Rationale**: Defining the interface first forces clarity of thought and prevents implementation details from leaking into the design.
-</convention>
-
-<convention id="CS-05" title="Architecture Decision Records">
-**Standard**: Complex modules must have an associated ADR where the intention, description, and behavioral definitions are discussed and documented.
-
-**Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
-</convention>
-
-<convention id="CS-06" title="config structs on init functions">
-**Standard**: Use config structs, even if at first glance does not needed. Modules can easily grow and as stated, those are contract, providing with config structs allows to change and handle improvements wothout breaking current code.
-
-**Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
-</convention>
-
-<convention id="CS-07" title="Discriminated Unions for Variants">
-**Standard**: When a function or struct must accept multiple variant types, use a discriminated union combined with a type field rather than separate parameters or void pointers.
+**Recommendation**: Use `priv_` for private static variables and no prefix for static functions (since `static` keyword already signals scope).
 
 **Example**:
 
 ```c
-typedef struct {
-    shape_config_t base;
-    union {
-        rect_config_t rect;
-        circle_config_t circle;
-        triangle_config_t triangle;
-    } variant;
-} factory_config_t;
+// uart.c
+
+// Private static variables
+static uart_state_t priv_state = {0};
+static uint8_t priv_buffer[256];
+
+// Private static functions (no prefix needed)
+static void reset_buffer(void) {
+    memset(priv_buffer, 0, sizeof(priv_buffer));
+}
+
+static bool validate_config(uart_config_t* config) {
+    return (config != NULL && config->baudrate > 0);
+}
+
+// Public API functions
+void uart_init(uart_t* self, uart_config_t* config) {
+    if (validate_config(config)) {
+        // Initialize...
+    }
+}
 ```
 
-**Rationale**: Unions allow multiple alternative types to share the same memory region, minimizing struct size. The discriminator field (e.g., `base.type`) ensures type safety at runtime by clearly indicating which union member is active. This technique is essential for memory-constrained embedded systems where every byte matters.
+</convention>
+
+### Code Structure and Layout
+
+<convention id="CS-01" title="Design First">
+
+**Standard**: Header files should be considered signed contracts; they must be designed, reviewed, and finalized before implementation begins.
+
+**Rationale**: Defining the interface first forces clarity of thought, prevents implementation details from leaking into the design, and establishes a clear contract that guides development.
+
+**Detail**: Headers define the module's public API—what it promises to do, not how it does it. By designing headers first, you create a boundary that separates interface from implementation. This approach enables design review, parallel development, and prevents the common mistake of designing APIs around implementation constraints. Treat header finalization as a milestone: once approved, the contract is set.
+
+**Workflow**:
+
+1. **Design**: Define module purpose, data structures, and function signatures in the header
+2. **Review**: Discuss the API with team/stakeholders for clarity and completeness  
+3. **Finalize**: Lock the header as the contract
+4. **Implement**: Write the `.c` file to fulfill the contract
+
+</convention>
+
+<convention id="CS-02" title="Architecture Decision Records">
+
+**Standard**: Important, complex, or key modules must have an associated ADR documenting the design rationale, alternatives considered, and behavioral contracts.
+
+**Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance. ADRs serve as living documentation that travels with the code, preventing knowledge loss and reducing rework.
+
+**Detail**: Use ADRs for modules that are complex, business-critical, or have significant architectural impact. The structure should be defined by your team and adapted to your project needs. ADRs complement CS-01 (Design First) by documenting the decision-making process during header design. Create the ADR before or during header design, not after implementation.
+
+**Suggested Template**:
+
+1. **Title**: Module name and purpose
+2. **Status**: Proposed | Accepted | Deprecated
+3. **Context**: Problem being solved, constraints
+4. **Decision**: What was decided and why
+5. **Alternatives Considered**: Other options and why they were rejected
+6. **Consequences**: Trade-offs, impacts, future implications
+
+**Example**:
+
+```markdown
+# ADR: Sensor Data Buffering
+
+## Status
+Accepted
+
+## Context
+Need to buffer sensor readings to handle burst data without loss.
+Memory constrained to 2KB for this module.
+
+## Decision
+Use circular buffer with 100-sample capacity (200 bytes).
+Overflow strategy: drop oldest samples.
+
+## Alternatives Considered
+- Dynamic allocation: Rejected due to fragmentation risk
+- Larger buffer: Exceeds memory budget
+
+## Consequences
+- Simple, predictable memory usage
+- May lose data during sustained bursts
+```
+
+</convention>
+
+<convention id="CS-03" title="Header Content">
+
+**Standard**: Header files must be self-contained (only necessary dependencies) and use include guards to prevent multiple inclusions.
+
+**Rationale**: Ensures modules can be included in any order without compilation errors and prevents redefinition errors during compilation.
+
+**Detail**: A self-contained header includes only dependencies it needs (e.g., `stdint.h` for `uint32_t`) so users don't have to know internal requirements. Use traditional include guards (`#ifndef`/`#define`/`#endif`) for maximum portability across all C compilers.
+
+**Example**:
+
+```c
+// device.h
+#ifndef DEVICE_H
+#define DEVICE_H
+
+// Include dependencies needed by this header
+#include <stdint.h>
+#include <stdbool.h>
+
+// Type definitions ..
+
+
+// Function prototypes ..
+
+#endif // DEVICE_H
+```
+
+</convention>
+
+<convention id="CS-04" title="Header Organization">
+
+**Standard**: Follow a strict organization pattern: Guard → Includes → Defines → Types → Prototypes.
+
+**Rationale**: Predictable layout makes reading APIs easier for other developers and ensures consistent structure across all modules.
+
+**Detail**: Headers should flow logically from external dependencies to internal definitions to the public API. Within the prototypes section, place lifecycle functions (`_init`, `_deinit`) first, followed by other functions grouped by purpose. This order ensures that definitions are available before use and presents the API in the order users typically need it.
+
+**Example**:
+
+```c
+// sensor.h
+#ifndef SENSOR_H
+#define SENSOR_H
+
+// 1. Includes - external dependencies
+#include <stdint.h>
+#include <stdbool.h>
+
+// 2. Defines - constants and macros
+#define SENSOR_MAX_READINGS 100
+
+// 3. Types - enums, structs, typedefs
+typedef enum {
+    SENSOR_MODE_ACTIVE,
+    SENSOR_MODE_SLEEP
+} sensor_mode_t;
+
+typedef struct {
+    uint32_t id;
+    sensor_mode_t mode;
+    float last_reading;
+} sensor_t;
+
+typedef struct {
+    uint32_t id;
+    sensor_mode_t mode;
+} sensor_config_t;
+
+// 4. Prototypes - init first, then other functions
+void sensor_init(sensor_t* self, sensor_config_t* config);
+void sensor_deinit(sensor_t* self);
+
+void sensor_task(sensor_t* self);
+float sensor_read(sensor_t* self);
+void sensor_setMode(sensor_t* self, sensor_mode_t mode);
+
+#endif // SENSOR_H
+```
+
+</convention>
+
+<convention id="CS-05" title="Configuration Structs">
+
+**Standard**: Initialization functions should accept configuration through a dedicated config struct, even for simple cases.
+
+**Rationale**: Config structs provide future extensibility without breaking the API contract. As modules grow, new parameters can be added to the struct without changing function signatures.
+
+**Detail**: Define a `module_config_t` struct containing all initialization parameters and pass it to the `module_init()` function. This pattern allows adding new configuration options later while maintaining backward compatibility through struct initialization. For truly static configuration (compile-time constants), use `#define` directives, but prefer runtime configurability through structs when parameters may vary between instances or deployments.
+
+**Example**:
+
+```c
+// device.h
+
+// Configuration structure
+typedef struct {
+    uint32_t id;
+    uint32_t mode;
+} device_config_t;
+
+// Init function accepts config struct
+void device_init(device_t* self, device_config_t* config);
+
+// Usage - easy to extend config later without changing function signature
+device_config_t config = {.id = 1, .mode = 0};
+device_t myDevice;
+device_init(&myDevice, &config);
+```
+
+<convention id="CS-06" title="Discriminated Unions for Variants">
+
+**Standard**: When a function or struct must accept multiple variant types, use a discriminated union with an explicit type field rather than separate parameters or void pointers.
+
+**Rationale**: Keeps variant data compact and type-safe while avoiding brittle parameter lists. A union stores only the largest variant, so the struct size is the maximum of its variants instead of the sum of all variants.
+
+**Detail**: Define a `type` or `kind` field (typically an enum) alongside a union of variant payloads. Initialize the type before use and switch on it when handling the data.
+
+**Example**:
+
+```c
+typedef enum {
+    bus_mode_uart,
+    bus_mode_spi
+} bus_mode_t;
+
+typedef struct {
+    uint32_t baudrate;
+    uint8_t parity;
+} uart_config_t;
+
+typedef struct {
+    uint32_t bitrate;
+    uint8_t polarity;
+} spi_config_t;
+
+typedef struct {
+    bus_mode_t mode;
+    union {
+        uart_config_t uart;
+        spi_config_t spi;
+    } variant;
+} bus_config_t;
+```
+
 </convention>
 
 #### Source Files
