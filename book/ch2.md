@@ -1,7 +1,5 @@
 # Recommended Practices and Conventions
 
-## Practices Forged by Experience
-
 The recommended practices and proposed coding and development conventions detailed in this book are purely pragmatic.
 They were gathered and refined through years of professional experience, evolving through a process of natural selection.
 Practices that provided clear value remained part of our workflow.
@@ -24,7 +22,7 @@ We try to follow them strictly throughout this book to demonstrate their effecti
 We encourage the reader to identify how these practices are applied in the chapters that follow.
 However, in different contexts or legacy environments, strict adherence might not always be possible or beneficial.
 
-### Convention Format
+<highlight title = Convention Format>
 
 Throughout this chapter, standards are presented as distinct "Convention" blocks for easy reference. Each block contains:
 
@@ -32,7 +30,7 @@ Throughout this chapter, standards are presented as distinct "Convention" blocks
 * **Standard**: The rule itself.
 * **Rationale**: The "why" behind the rule. Understanding the reason is more important than memorizing the rule; if the rationale no longer applies, the rule should be revisited.
 
----
+</highlight>
 
 ## Coding Standards and Conventions
 
@@ -352,8 +350,6 @@ void uart_init(uart_t* self, uart_config_t* config);
 
 </convention>
 
-#### Internal/Static Scope
-
 <convention id="NC-06" title="Private Naming">
 
 **Standard**: Static variables and functions can follow any clear convention as their context is local.
@@ -564,6 +560,8 @@ device_t myDevice;
 device_init(&myDevice, &config);
 ```
 
+</convention>
+
 <convention id="CS-06" title="Discriminated Unions for Variants">
 
 **Standard**: When a function or struct must accept multiple variant types, use a discriminated union with an explicit type field rather than separate parameters or void pointers.
@@ -601,35 +599,127 @@ typedef struct {
 
 </convention>
 
-#### Source Files
+<convention id="CS-08" title="Include Order">
 
-<convention id="CS-08" title="Source Content">
-**Standard**: The module header must be included first in the source file.
+**Standard**: Source files must strictly order includes:
 
-**Rationale**: Verifies that the header is truly self-contained.
+1. **Main Module Header**: The header corresponding to this `.c` file.
+2. **Sub-module Headers**: Headers for internal sub-modules (alphabetical).
+3. **System Headers**: Standard library headers like `<stdint.h>` (alphabetical).
+4. **Project Headers**: Other library or project-level headers (alphabetical).
+
+Groups must be separated by a blank line or comment.
+
+**Rationale**: Including the main header first ensures it is self-contained and doesn't rely on hidden dependencies. Grouping and sorting other headers improves readability, prevents duplication, and reduces merge conflicts.
+
+**Example**:
+
+```c
+// 1. Main Module Header
+#include "ua_context.h"
+
+// 2. Sub-modules
+#include "ua_rx.h"
+#include "ua_tx.h"
+
+// 3. System Headers
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h>
+
+// 4. Project Headers
+#include "os_scheduler.h"
+#include "utils_crc.h"
+```
+
 </convention>
 
 <convention id="CS-09" title="Source Organization">
-**Standard**: Follow a strict organization pattern: Includes -> Macros -> Types -> Private Prototypes -> Private Vars -> Implementations.
 
-**Rationale**: Improves code navigability and consistency.
+**Standard**: Source files must follow a strict organization pattern:
+
+1. **Includes**: See CS-08.
+2. **Local Defines**: Macros and constants used only in this file.
+3. **Typedefs/Enums/Structs**: Private types.
+4. **Static Function Prototypes**: Forward declarations for private functions.
+5. **Static (Local) Variables**: File-scoped state.
+6. **Public Function Implementations**: The API as defined in the header.
+7. **Static Function Implementations**: Helpers and internal logic.
+
+**Rationale**: A predictable layout reduces cognitive load. Separating private definitions (top) from implementations (bottom) allows developers to quickly scan the file's dependencies and internal state before diving into the code.
+
+**Example**:
+
+```c
+// 1. Includes
+#include "ua_context.h"
+#include <string.h>
+
+// 2. Local Defines
+#define BUFFER_SIZE 256
+
+// 3. Types
+typedef struct {
+    uint8_t buffer[BUFFER_SIZE];
+} ua_buffer_t;
+
+// 4. Static Prototypes
+static void clean_buffer(ua_buffer_t* buf);
+
+// 5. Static Variables
+static ua_buffer_t g_rx_buffer;
+
+// 6. Public Implementations
+void ua_init(void) {
+    clean_buffer(&g_rx_buffer);
+}
+
+// 7. Static Implementations
+static void clean_buffer(ua_buffer_t* buf) {
+    memset(buf, 0, sizeof(ua_buffer_t));
+}
+```
+
 </convention>
 
 ### Documentation
 
 <convention id="DO-01" title="Public API Documentation">
-**Standard**: Use comprehensive documentation blocks for header files (the public contract).
 
-**Rationale**: Users of the module should only need to read the header to understand how to use it.
+**Standard**: Public header files must use **Doxygen-style** comments (`/** ... */`) for all exported functions, types, and macros.
+
+**Rationale**: Doxygen is the industry standard for C documentation. It allows generating professional, navigable HTML/PDF documentation directly from the source code, ensuring the documentation stays consistent with the API.
+
+**Example**:
+
+```c
+/**
+ * @brief  Initializes the UART module.
+ * @param  config Wrapper containing baudrate and parity settings.
+ * @return STATUS_OK if initialized successfully.
+ */
+status_t uart_init(uart_config_t* config);
+```
+
 </convention>
 
 <convention id="DO-02" title="Internal Documentation">
-**Standard**: Source files can use a relaxed documentation style, focusing on "why" rather than "what".
 
-**Rationale**: Implementation details are subject to change; comments should explain complex logic or design decisions.
+**Standard**: Internal source code (`.c` files) should use a **relaxed documentation style** (typically `//`), focusing strictly on *why* complex decisions were made, not *what* the code is doing.
+
+**Rationale**: Implementation details change frequently. Over-documenting the "what" creates a maintenance burden and often leads to stale comments that mislead developers. Comments should capture the "why"—the intent, the edge cases considered, or the workarounds employed—to aid future refactoring.
+
+**Example**:
+
+```c
+// We use a circular buffer here instead of a linked list to avoid 
+// dynamic allocation fragmentation on this constrained platform.
+static void process_buffer(void) {
+    // ...
+}
+```
+
 </convention>
-
----
 
 ## Unit Testing and Verification
 
@@ -647,34 +737,7 @@ Verification is not an afterthought; it is an integral part of the development p
 **Rationale**: Keeps tests close to the code but separated from source, and ensures 1:1 mapping between modules and test suites.
 </convention>
 
-<convention id="UT-02" title="Test Independence">
-**Standard**: Each test must be self-contained and must not depend on the state or side effects of other tests. Usage of `setup` and `teardown` should ensure a clean state for every test.
-
-**Rationale**: Prevents cascading failures and ensures that tests can be run in any order.
-</convention>
-
-<convention id="UT-03" title="Test Naming">
-**Standard**: Test names should follow a pattern like `FunctionOrFeature_Condition_ExpectedResult` (e.g., `Init_NullPointer_ReturnsError`).
-
-**Rationale**: Makes failures self-explanatory in the test report.
-</convention>
-
-<convention id="UT-04" title="Arrange, Act, Assert">
-**Standard**: Test bodies should clearly follow the **AAA** pattern:
-1. **Arrange**: Setup the state.
-2. **Act**: Call the function under test.
-3. **Assert**: Verify the results.
-
-**Rationale**: Improves readability and standardizes test logic.
-</convention>
-
-<convention id="UT-05" title="Living Documentation">
-**Standard**: Unit tests should serve as executable documentation. They should demonstrate the recommended usage, edge cases, and limits of the module.
-
-**Rationale**: Unlike comments, compiled tests cannot drift out of sync with the code.
-</convention>
-
-<convention id="UT-06" title="Test Folder Structure">
+<convention id="UT-02" title="Test Folder Structure">
 **Standard**: The `test` folder should follow a consistent internal structure:
 - `runners/`: Contains the `main` entry point and build scripts.
 - `src/`: Contains helper source files specific to testing (test doubles, fakes).
@@ -684,13 +747,50 @@ Verification is not an afterthought; it is an integral part of the development p
 **Rationale**: Separates test infrastructure from the test logic itself.
 </convention>
 
-<convention id="UT-07" title="Test Helpers">
+<convention id="UT-03" title="Build and Test Automation Scripts">
+**Standard**: Each library should include a `scripts/` folder at the module root containing:
+- `run_tests.sh`: A shell script for building and running tests on Linux (the primary implementation)
+- `invoke_wsl_tests.ps1`: A PowerShell wrapper that invokes the Linux script via WSL on Windows
+
+**Detail**: Use **WSL as the common base environment** for both Windows and Linux development. The Windows PowerShell script should simply call the Linux script through WSL, rather than duplicating logic. This ensures a single source of truth for the build process. Scripts should handle path resolution, CPPUTEST_HOME detection, and build directory management automatically. See `companion_code/ch3_patterns/scripts/` for reference implementations.
+
+**Rationale**: Having a single Linux-based script as the source of truth eliminates duplication and ensures identical behavior across Windows (via WSL), Linux, and CI environments. This approach was discovered through experience—it significantly reduces maintenance burden and prevents platform-specific bugs.
+</convention>
+
+<convention id="UT-04" title="Test Independence">
+**Standard**: Each test must be self-contained and must not depend on the state or side effects of other tests. Usage of `setup` and `teardown` should ensure a clean state for every test.
+
+**Rationale**: Prevents cascading failures and ensures that tests can be run in any order.
+</convention>
+
+<convention id="UT-05" title="Arrange, Act, Assert">
+**Standard**: Test bodies should clearly follow the **AAA** pattern:
+1. **Arrange**: Setup the state.
+2. **Act**: Call the function under test.
+3. **Assert**: Verify the results.
+
+**Rationale**: Improves readability and standardizes test logic.
+</convention>
+
+<convention id="UT-06" title="Test Naming">
+**Standard**: Test names should follow a pattern like `FunctionOrFeature_Condition_ExpectedResult` (e.g., `Init_NullPointer_ReturnsError`).
+
+**Rationale**: Makes failures self-explanatory in the test report.
+</convention>
+
+<convention id="UT-07" title="Living Documentation">
+**Standard**: Unit tests should serve as executable documentation. They should demonstrate the recommended usage, edge cases, and limits of the module.
+
+**Rationale**: Unlike comments, compiled tests cannot drift out of sync with the code.
+</convention>
+
+<convention id="UT-08" title="Test Helpers">
 **Standard**: Shared setup code and complex assertions should be abstracted into helper functions or "Test Objects". These should be located in the `test/src` directory and included as needed.
 
 **Rationale**: Keep valid test functions focused on the AAA pattern and free of clutter.
 </convention>
 
-<convention id="UT-08" title="CppUTest Template">
+<convention id="UT-09" title="CppUTest Template">
 **Standard**: Follow this standard template for new test files:
 ```cpp
 #include "CppUTest/TestHarness.h"
@@ -719,16 +819,6 @@ TEST(Module, Init_StateIsReset) {
 ```
 
 **Rationale**: Provides a consistent starting point for all developers.
-</convention>
-
-<convention id="UT-09" title="Build and Test Automation Scripts">
-**Standard**: Each library should include a `scripts/` folder at the module root containing:
-- `run_tests.sh`: A shell script for building and running tests on Linux (the primary implementation)
-- `invoke_wsl_tests.ps1`: A PowerShell wrapper that invokes the Linux script via WSL on Windows
-
-**Detail**: Use **WSL as the common base environment** for both Windows and Linux development. The Windows PowerShell script should simply call the Linux script through WSL, rather than duplicating logic. This ensures a single source of truth for the build process. Scripts should handle path resolution, CPPUTEST_HOME detection, and build directory management automatically. See `companion_code/ch3_patterns/scripts/` for reference implementations.
-
-**Rationale**: Having a single Linux-based script as the source of truth eliminates duplication and ensures identical behavior across Windows (via WSL), Linux, and CI environments. This approach was discovered through experience—it significantly reduces maintenance burden and prevents platform-specific bugs.
 </convention>
 
 ## Debugging and Hardware Emulation

@@ -12,16 +12,48 @@
 }
 
 #let convention(id: "", title: "", body) = {
+  let primary-color = rgb("#0056b3") // Professional Blue
+  let bg-color = rgb("#f0f7ff") // Very Light Blue
+  let border-color = primary-color.lighten(30%)
+
+  // The Container
   block(
-    fill: rgb("#e6f3ff"), // Light Blue Background
-    stroke: (left: 4pt + rgb("#2196f3")), // Blue Border
-    inset: 16pt,
-    radius: 4pt,
     width: 100%,
-    [
-      *#id: #title* \
-      #body
-    ],
+    stroke: 1pt + border-color,
+    radius: 4pt,
+    clip: true, // Ensures the header background respects the border radius
+    below: 2em,
+    stack(
+      dir: ttb,
+
+      // Header Section
+      block(
+        width: 100%,
+        fill: primary-color,
+        inset: (x: 12pt, y: 8pt),
+        stack(
+          dir: ltr,
+          spacing: 12pt,
+          // ID Pill
+          box(
+            fill: white,
+            radius: 3pt,
+            inset: (x: 6pt, y: 3pt),
+            text(fill: primary-color, weight: "bold", size: 0.9em, id),
+          ),
+          // Title
+          align(horizon, text(fill: white, weight: "bold", size: 1em, title)),
+        ),
+      ),
+
+      // Body Section
+      block(
+        width: 100%,
+        fill: bg-color,
+        inset: 16pt,
+        body,
+      ),
+    ),
   )
 }
 
