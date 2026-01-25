@@ -57,6 +57,13 @@ You have two options:
 * Click the **Typst Preview** button (Eye icon).
 * Keep this window open; it updates live as you save.
 
+**D. Rendering the PDF**
+Use the VS Code "Build Book PDF" task or run manually:
+
+```bash
+typst compile --root . build/main.typ build/main.pdf
+```
+
 ---
 
 ## 🧪 Running Unit Tests
@@ -96,6 +103,11 @@ chapter2.md
 ### Changing Visual Style
 To modify fonts, margins, or colors, edit:
 * `book/template.typ`
+
+### Markdown Extensions
+We support custom HTML tags in Markdown (e.g., `<convention>` and `<draft>`) so
+contributors can keep prose readable while Typst applies styling. See
+`docs/markdown_tags.md` for the supported tags and how to add new ones.
 
 ---
 

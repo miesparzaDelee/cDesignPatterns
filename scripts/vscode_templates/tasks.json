@@ -18,6 +18,26 @@
             }
         },
         {
+            "label": "Build Book PDF",
+            "type": "shell",
+            "command": "typst",
+            "args": [
+                "compile",
+                "--root",
+                ".",
+                "build/main.typ",
+                "build/main.pdf"
+            ],
+            "dependsOn": [
+                "Build Book"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
             "label": "Test Patterns",
             "type": "shell",
             "command": "powershell",

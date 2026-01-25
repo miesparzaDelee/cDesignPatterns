@@ -82,6 +82,15 @@ In `book/*.md`, inject code with:
 Types: `whole`, `include`, `define`, `typedef`, `struct`, `function`,
 `region`, `test_group`, `test`
 
+## Markdown HTML Tags
+
+We use cmarker to parse custom HTML tags in Markdown so the content stays
+readable while Typst handles layout. Register new tags in
+`scripts/build_book.py` via the `html:` mapping, and implement the rendering
+functions in `book/template.typ`.
+
+Tracked tags and attributes live in `docs/markdown_tags.md`.
+
 ## Directory Structure
 
 - `companion_code/ch3_patterns/src/` - C source files

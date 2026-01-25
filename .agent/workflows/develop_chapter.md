@@ -43,3 +43,12 @@ Follow these steps for introductory, conceptual, or non-code-centric sections:
 
 4. **Final Revision**:
    Conduct a final review of the entire section for tone, clarity, and consistency.
+
+---
+
+### Markdown Styling Conventions
+
+When adding styled blocks in Markdown, prefer HTML tags (e.g., `<convention>`,
+`<draft>`) over raw Typst comments. Register new tags in
+`scripts/build_book.py` under the `html:` mapping, implement the renderer in
+`book/template.typ`, and document the tag in `docs/markdown_tags.md`.

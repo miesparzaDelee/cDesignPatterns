@@ -48,122 +48,124 @@ We have organized these standards into four main categories:
 ### File and Folder Organization
 
 #### Library and Project Structure
-<!--raw-typst #convention(id: "FO-02", title: "Library Organization")[
+
+<convention id="FO-02" title="Library Organization">
+
 **Standard**: A set of modules should be kept in the same folder (Library). Headers are included in an `inc` folder, source files in the library root or `src` folder.
 
 **Rationale**: Promotes modularity and clean separation of interface and implementation within libraries.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "FO-03", title: "Library Build Artifacts")[
+<convention id="FO-03" title="Library Build Artifacts">
 **Standard**: Libraries should have a `build` folder for instructions/scripts and a `dist` folder for the built artifact.
 
 **Rationale**: Standardizes the build methodology across different libraries.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "FO-04", title: "Library Independence")[
+<convention id="FO-04" title="Library Independence">
 **Standard**: Libraries should be groups of modules organized by purpose, usable independently, and imported as git submodules.
 
 **Rationale**: Allows for independent versioning, updating, and reuse across multiple projects.
-] -->
+</convention>
 
 #### The Module Unit
-<!--raw-typst #convention(id: "FO-01", title: "Module Structure")[
+<convention id="FO-01" title="Module Structure">
 **Standard**: A module must consist of exactly one public header file (`.h`) and one, same-named private source file (`.c`).
 
 **Rationale**: Enforces clear boundaries. The header is the contract; the source is the implementation.
-] -->
+</convention>
 
 #### Sub-modules
-<!--raw-typst #convention(id: "FO-05", title: "Sub-module Splitting")[
+<convention id="FO-05" title="Sub-module Splitting">
 **Standard**: If a module becomes too complex, split it into sub-modules (additional .h/.c pairs). Submodule headers should be clearly named or placed in subfolders (e.g., `#include "module/submodule.h"`).
 
 **Rationale**: Keeps file sizes manageable and complexity encapsulated without breaking the module abstraction.
-] -->
+</convention>
 
 ### Naming Conventions
 
 #### Public API
-<!--raw-typst #convention(id: "NC-01", title: "Public Function/Type Naming")[
+<convention id="NC-01" title="Public Function/Type Naming">
 **Standard**: All public functions and types must be prefixed with the module name.
 **Style**: Use a mixed convention of underscores and camelCase (e.g., `mod_nameFunction_otherCharacteristics`).
 **Detail**: Use underscores (`_`) to separate the module prefix and major concerns, and camelCase (`nameFunction`) for the specific item name.
 
 **Rationale**: Simulates namespacing in C and prevents symbol collisions.
-] -->
+</convention>
 
 #### Module Lifecycle
-<!--raw-typst #convention(id: "NC-02", title: "Lifecycle Pattern")[
+<convention id="NC-02" title="Lifecycle Pattern">
 **Standard**: Modules should follow a standardized `init`, `deinit`, and `task` lifecycle pattern where applicable.
 
 **Rationale**: Consistent naming and usage patterns from the start lead to predictable behavior and better maintainability.
-] -->
+</convention>
 
 #### Types and Macros
-<!--raw-typst #convention(id: "NC-03", title: "Typedef Suffix")[
+<convention id="NC-03" title="Typedef Suffix">
 **Standard**: User-created typedefs should end with a `_t` suffix.
 
 **Rationale**: clearly distinguishes types from variables.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "NC-04", title: "Handle Typedef Prefix")[
+<convention id="NC-04" title="Handle Typedef Prefix">
 **Standard**: When passing pointers to structs through APIs, define a handle typedef prefixed with `h` (e.g., `hCircle_t`, `hDevice_t`) instead of using the raw pointer type.
 **Detail**: A handle is a typedef to a pointer: `typedef struct myStruct * hMyStruct_t;`. This can be used for both visible structs (Object Pattern) and opaque structs (Opaque Pattern).
 
 **Rationale**: Using handles improves API readability and reduces clutter. Instead of `myFunc(&myObject)` everywhere, you use `myFunc(myHandle)`. It also provides a clear signal that this type is meant to be passed by reference, and makes the API more consistent and easier to refactor.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "NC-05", title: "Macro Naming")[
+<convention id="NC-05" title="Macro Naming">
 **Standard**: Macros and definitions should be in UPPER_CASE with underscores (e.g., `MOD_NAME_FEATURE_ENABLE`).
 
 **Rationale**: Follows standard C conventions for preprocessor directives.
-] -->
+</convention>
 
 #### Internal/Static Scope
-<!--raw-typst #convention(id: "NC-06", title: "Private Naming")[
+<convention id="NC-06" title="Private Naming">
 **Standard**: Static variables and functions can follow any clear convention as their context is local.
 **Recommendation**: Common practice is to prefix with `s_` or `_` to denote private scope.
-] -->
+</convention>
 
 ### Code Structure and Layout
 
 #### Header Files
-<!--raw-typst #convention(id: "CS-01", title: "Header Content")[
+<convention id="CS-01" title="Header Content">
 **Standard**: Header files must be self-contained (include all necessary dependencies) and use include guards to prevent multiple inclusions.
 
 **Rationale**: Ensures modules can be included in any order without compilation errors.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-02", title: "Header Organization")[
+<convention id="CS-02" title="Header Organization">
 **Standard**: Follow a strict organization pattern: License -> Guard -> Includes -> Defines -> Types -> Prototypes.
 
 **Rationale**: Predictable layout makes reading APIs easier for other developers.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-03", title: "Configuration Headers")[
+<convention id="CS-03" title="Configuration Headers">
 **Standard**: Definitions or configuration options should be kept in a separate header file (potentially as a submodule).
 
 **Rationale**:Separates configuration from implementation, facilitating porting and customization.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-04", title: "Design First")[
+<convention id="CS-04" title="Design First">
 **Standard**: Header files should be considered signed contracts; they must be designed, reviewed, and finalized before implementation begins.
 
 **Rationale**: Defining the interface first forces clarity of thought and prevents implementation details from leaking into the design.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-05", title: "Architecture Decision Records")[
+<convention id="CS-05" title="Architecture Decision Records">
 **Standard**: Complex modules must have an associated ADR where the intention, description, and behavioral definitions are discussed and documented.
 
 **Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-06", title: "config structs on init functions")[
+<convention id="CS-06" title="config structs on init functions">
 **Standard**: Use config structs, even if at first glance does not needed. Modules can easily grow and as stated, those are contract, providing with config structs allows to change and handle improvements wothout breaking current code.
 
 **Rationale**: Captures the context and "why" behind design decisions, which is crucial for long-term maintenance.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-07", title: "Discriminated Unions for Variants")[
+<convention id="CS-07" title="Discriminated Unions for Variants">
 **Standard**: When a function or struct must accept multiple variant types, use a discriminated union combined with a type field rather than separate parameters or void pointers.
 
 **Example**:
@@ -179,34 +181,34 @@ typedef struct {
 ```
 
 **Rationale**: Unions allow multiple alternative types to share the same memory region, minimizing struct size. The discriminator field (e.g., `base.type`) ensures type safety at runtime by clearly indicating which union member is active. This technique is essential for memory-constrained embedded systems where every byte matters.
-] -->
+</convention>
 
 #### Source Files
-<!--raw-typst #convention(id: "CS-08", title: "Source Content")[
+<convention id="CS-08" title="Source Content">
 **Standard**: The module header must be included first in the source file.
 
 **Rationale**: Verifies that the header is truly self-contained.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "CS-09", title: "Source Organization")[
+<convention id="CS-09" title="Source Organization">
 **Standard**: Follow a strict organization pattern: Includes -> Macros -> Types -> Private Prototypes -> Private Vars -> Implementations.
 
 **Rationale**: Improves code navigability and consistency.
-] -->
+</convention>
 
 ### Documentation
 
-<!--raw-typst #convention(id: "DO-01", title: "Public API Documentation")[
+<convention id="DO-01" title="Public API Documentation">
 **Standard**: Use comprehensive documentation blocks for header files (the public contract).
 
 **Rationale**: Users of the module should only need to read the header to understand how to use it.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "DO-02", title: "Internal Documentation")[
+<convention id="DO-02" title="Internal Documentation">
 **Standard**: Source files can use a relaxed documentation style, focusing on "why" rather than "what".
 
 **Rationale**: Implementation details are subject to change; comments should explain complex logic or design decisions.
-] -->
+</convention>
 
 ---
 
@@ -220,40 +222,40 @@ Verification is not an afterthought; it is an integral part of the development p
 
 ### Unit Testing Standards
 
-<!--raw-typst #convention(id: "UT-01", title: "Test Organization")[
+<convention id="UT-01" title="Test Organization">
 **Standard**: Each library must have a `test` folder. Inside, each module must have a corresponding test file (e.g., `test_module_name.cpp`) where all public API functions are tested.
 
 **Rationale**: Keeps tests close to the code but separated from source, and ensures 1:1 mapping between modules and test suites.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-02", title: "Test Independence")[
+<convention id="UT-02" title="Test Independence">
 **Standard**: Each test must be self-contained and must not depend on the state or side effects of other tests. Usage of `setup` and `teardown` should ensure a clean state for every test.
 
 **Rationale**: Prevents cascading failures and ensures that tests can be run in any order.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-03", title: "Test Naming")[
+<convention id="UT-03" title="Test Naming">
 **Standard**: Test names should follow a pattern like `FunctionOrFeature_Condition_ExpectedResult` (e.g., `Init_NullPointer_ReturnsError`).
 
 **Rationale**: Makes failures self-explanatory in the test report.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-04", title: "Arrange, Act, Assert")[
+<convention id="UT-04" title="Arrange, Act, Assert">
 **Standard**: Test bodies should clearly follow the **AAA** pattern:
 1. **Arrange**: Setup the state.
 2. **Act**: Call the function under test.
 3. **Assert**: Verify the results.
 
 **Rationale**: Improves readability and standardizes test logic.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-05", title: "Living Documentation")[
+<convention id="UT-05" title="Living Documentation">
 **Standard**: Unit tests should serve as executable documentation. They should demonstrate the recommended usage, edge cases, and limits of the module.
 
 **Rationale**: Unlike comments, compiled tests cannot drift out of sync with the code.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-06", title: "Test Folder Structure")[
+<convention id="UT-06" title="Test Folder Structure">
 **Standard**: The `test` folder should follow a consistent internal structure:
 - `runners/`: Contains the `main` entry point and build scripts.
 - `src/`: Contains helper source files specific to testing (test doubles, fakes).
@@ -261,15 +263,15 @@ Verification is not an afterthought; it is an integral part of the development p
 - `tests/`: Contains the actual test files (e.g., `ModuleTest.cpp`), mirroring the library's source structure.
 
 **Rationale**: Separates test infrastructure from the test logic itself.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-07", title: "Test Helpers")[
+<convention id="UT-07" title="Test Helpers">
 **Standard**: Shared setup code and complex assertions should be abstracted into helper functions or "Test Objects". These should be located in the `test/src` directory and included as needed.
 
 **Rationale**: Keep valid test functions focused on the AAA pattern and free of clutter.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-08", title: "CppUTest Template")[
+<convention id="UT-08" title="CppUTest Template">
 **Standard**: Follow this standard template for new test files:
 ```cpp
 #include "CppUTest/TestHarness.h"
@@ -297,9 +299,9 @@ TEST(Module, Init_StateIsReset) {
 ```
 
 **Rationale**: Provides a consistent starting point for all developers.
-] -->
+</convention>
 
-<!--raw-typst #convention(id: "UT-09", title: "Build and Test Automation Scripts")[
+<convention id="UT-09" title="Build and Test Automation Scripts">
 **Standard**: Each library should include a `scripts/` folder at the module root containing:
 - `run_tests.sh`: A shell script for building and running tests on Linux (the primary implementation)
 - `invoke_wsl_tests.ps1`: A PowerShell wrapper that invokes the Linux script via WSL on Windows
@@ -307,11 +309,11 @@ TEST(Module, Init_StateIsReset) {
 **Detail**: Use **WSL as the common base environment** for both Windows and Linux development. The Windows PowerShell script should simply call the Linux script through WSL, rather than duplicating logic. This ensures a single source of truth for the build process. Scripts should handle path resolution, CPPUTEST_HOME detection, and build directory management automatically. See `companion_code/ch3_patterns/scripts/` for reference implementations.
 
 **Rationale**: Having a single Linux-based script as the source of truth eliminates duplication and ensures identical behavior across Windows (via WSL), Linux, and CI environments. This approach was discovered through experience—it significantly reduces maintenance burden and prevents platform-specific bugs.
-] -->
+</convention>
 
 ## Debugging and Hardware Emulation
 
-<!--raw-typst #draft[
+<draft>
 In this
 (Write your ideas for Debugging and Emulation here. How do we debug on host vs target? What is the 'Faking' strategy?)
-] -->
+</draft>
