@@ -65,6 +65,7 @@ To ensure we "start with the right foot" and maintain quality, agents MUST follo
    Follow these specific workflows for development and initialization:
    - **[Session Startup](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/startup.md)**: Steps to initialize a new development session.
    - **[Chapter Development](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/develop_chapter.md)**: Steps for developing code and prose sections.
+   - **[Run Tests](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/run_tests.md)**: Steps to execute the pattern library unit tests.
 
 2. **Project Metadata and Status**:
    **[book/_guide.md](file:///c:/Users/Delee_RD/cDesignPatterns/book/_guide.md)** is the SOLE source of truth for chapter statuses, summaries, and dependencies.

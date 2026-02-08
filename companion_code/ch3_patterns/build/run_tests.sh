@@ -9,14 +9,16 @@ MODULE_ROOT=""
 CPPUTEST_HOME_ARG=""
 BUILD_DIR_ARG=""
 MAKE_TARGET=""
+TEST_ARGS_ARG=""
 
 # --- 1. Argument Parsing ---
-while getopts ":c:b:t:w:" opt; do
+while getopts ":c:b:t:w:a:" opt; do
   case "$opt" in
     c) CPPUTEST_HOME_ARG="$OPTARG" ;;
     b) BUILD_DIR_ARG="$OPTARG" ;;
     t) MAKE_TARGET="$OPTARG" ;;
     w) MODULE_ROOT="$OPTARG" ;;  
+    a) TEST_ARGS_ARG="$OPTARG" ;;
     \?) ;; 
   esac
 done
@@ -70,10 +72,16 @@ echo "  - Building in: $TARGET_BUILD_DIR"
 # --- THE FIX ---
 # We explicitly override the Makefile's internal WORKSPACE_PATH variable.
 # This forces it to look in the correct folder, ignoring the "/workspace/" default.
+MAKE_COMMAND="make WORKSPACE_PATH=$MODULE_ROOT"
+
+if [ -n "$TEST_ARGS_ARG" ]; then
+    MAKE_COMMAND="$MAKE_COMMAND CPPUTEST_EXE_FLAGS=\"$TEST_ARGS_ARG\""
+fi
+
 if [ -n "$MAKE_TARGET" ]; then
-    make "WORKSPACE_PATH=$MODULE_ROOT" "$MAKE_TARGET"
+    eval "$MAKE_COMMAND $MAKE_TARGET"
 else
-    make "WORKSPACE_PATH=$MODULE_ROOT"
+    eval "$MAKE_COMMAND"
 fi
 
 echo "--- Module Tests Passed ---"

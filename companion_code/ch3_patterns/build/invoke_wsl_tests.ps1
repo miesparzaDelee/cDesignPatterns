@@ -76,8 +76,16 @@ if (-not $HasCArg -and -not $env:CPPUTEST_HOME) {
 }
 
 # --- 5. Execution ---
-# Join arguments into a single string for Bash
-$LinuxArgsString = $PassthroughArgs -join " "
+# Join arguments but ensure multi-word arguments are quoted for Bash
+$LinuxArgsArray = @()
+foreach ($arg in $PassthroughArgs) {
+    if ($arg -match '\s') {
+        $LinuxArgsArray += "'$arg'"
+    } else {
+        $LinuxArgsArray += $arg
+    }
+}
+$LinuxArgsString = $LinuxArgsArray -join " "
 $BashCommand = "$LinuxScriptRelPath $LinuxArgsString"
 
 $WslExecArgs = @()
