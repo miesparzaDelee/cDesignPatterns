@@ -59,6 +59,7 @@ TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/familyTests.cpp
 TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/vtableTests.cpp
 TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/factoryTests.cpp
 TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/singletonTests.cpp
+TEST_SRC_FILES += $(WORKSPACE_PATH)/tests/srctest/canvasTests.cpp
 
 # TEST_SRC_DIRS: Directories containing test source code
 #TEST_SRC_DIRS += $(WORKSPACE_PATH)/tests/srctest
