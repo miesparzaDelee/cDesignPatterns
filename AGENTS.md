@@ -12,6 +12,7 @@ Development is a conversation. Follow the workflows in `.agent/workflows/develop
 2. **Structural Planning**: For text, define the "bones" (paragraphs and relationships) before writing prose.
 3. **Continuous Feedback**: Wait for USER approval after each logical step (Header -> Impl -> Tests -> Text).
 4. **Literate Integration**: Always ensure code and book text support one another.
+5. **Modification Constraint**: **NEVER modify book content (`book/*.md`) unless explicitly instructed by the USER.** This includes formatting and metadata changes.
 
 ## Build, Test, Lint Commands
 
@@ -61,14 +62,21 @@ build and keep formatting consistent with the style section below.
 To ensure we "start with the right foot" and maintain quality, agents MUST follow these references:
 
 1. **Operational Workflows**:
-   Consult [.agent/workflows/](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/) for session startup and chapter development processes. These are the living instructions for this repository.
+   Follow these specific workflows for development and initialization:
+   - **[Session Startup](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/startup.md)**: Steps to initialize a new development session.
+   - **[Chapter Development](file:///c:/Users/Delee_RD/cDesignPatterns/.agent/workflows/develop_chapter.md)**: Steps for developing code and prose sections.
 
-2. **Coding Standards and Conventions**:
+2. **Project Metadata and Status**:
+   **[book/_guide.md](file:///c:/Users/Delee_RD/cDesignPatterns/book/_guide.md)** is the SOLE source of truth for chapter statuses, summaries, and dependencies.
+   - **NEVER** use YAML frontmatter in book files (`book/*.md`).
+   - If you need to update a chapter's status or metadata, do it in `_guide.md`.
+
+3. **Coding Standards and Conventions**:
    The primary source of truth for all code style, naming, and testing standards is **[book/ch2.md](file:///c:/Users/Delee_RD/cDesignPatterns/book/ch2.md)**.
    - Use the IDs (e.g., `NC-01`, `CS-04`) when discussing code reviews or explaining implementations.
    - When writing book content, explicitly reference these practices to reinforce the book's teachings.
 
-3. **Opaque Pattern (Key Pattern)**:
+4. **Opaque Pattern (Key Pattern)**:
    While detailed in Chapter 2, remember the core requirement for this repo: expose size constants and opaque handles in headers; hide implementation details in sources.
 
 ## Literate Programming Tags
@@ -112,18 +120,11 @@ Tracked tags and attributes live in `docs/markdown_tags.md`.
 
 ## Book Development
 
-Before editing chapters, check `book/_guide.md` for status and notes.
+Development is a conversation. Always check `book/_guide.md` before starting work to understand current context.
 
-Status meanings:
-
-- **Complete** - Final review ready, code and tests validated
-- **First Draft** - Section templates and ideas, needs more content
-- **Ideas Only** - Initial concepts, needs revision
-- **Not Started** - No content yet
-
-When modifying chapter content:
-
-1. Update `book/_guide.md` with new status and notes
-2. Ensure code examples compile and tests pass
-3. Update `book/structure.txt` if adding new chapters
-4. Run `python scripts/build_book.py` to verify the build succeeds
+1. **Interactive Design**: Never "dump" a full implementation. Start with headers or skeletons and discuss with the USER.
+2. **Structural Planning**: For text, define the "bones" (paragraphs and relationships). Use the workflow in `.agent/workflows/develop_chapter.md`.
+3. **Continuous Feedback**: Wait for USER approval after each logical step (Header -> Impl -> Tests -> Text).
+4. **Literate Integration**: Always ensure code and book text support one another.
+5. **Modification Constraint**: **NEVER modify book content (`book/*.md`) unless explicitly instructed by the USER.** This includes formatting and metadata changes.
+6. **Build Verification**: Run `python scripts/build_book.py` to verify the build succeeds after any change.
