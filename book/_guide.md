@@ -56,7 +56,6 @@
 - ch3_8.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_9.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_10.md ....... Complete (needs revision) - Code + tests pass, requires review
-- ch3_11.md ....... Design Complete - Intrusive Boundary Listener design documented, code & tests needed
 
 ---
 
