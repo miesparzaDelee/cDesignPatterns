@@ -53,8 +53,8 @@
 - ch3_6.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_7.md ........ Complete (needs revision) - Code + tests pass, requires review
 - ch3_8.md ........ Complete (needs revision) - Code + tests pass, requires review
-- ch3_9.md ........ Code Complete - Canvas module implemented, book text to be written
-- ch3_10.md ....... Code Complete - Observer Pattern implemented, book text to be written
+- ch3_9.md ........ Complete (needs revision) - Code + tests pass, requires review
+- ch3_10.md ....... Complete (needs revision) - Code + tests pass, requires review
 - ch3_11.md ....... Design Complete - Intrusive Boundary Listener design documented, code & tests needed
 
 ---
