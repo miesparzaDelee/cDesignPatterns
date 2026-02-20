@@ -1,0 +1,47 @@
+name: Build Book PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'book/**'
+      - 'companion_code/**'
+      - 'scripts/build_book.py'
+      - 'scripts/builder.py'
+  workflow_dispatch:  # Allow manual trigger from Actions tab
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed to create/update releases
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Typst
+        uses: typst-community/setup-typst@v4
+
+      - name: Build book sources
+        run: python scripts/build_book.py
+
+      - name: Compile PDF
+        run: typst compile --root . build/main.typ build/EmbeddedModularDevelopment.pdf
+
+      - name: Update latest release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: "Latest Book Build"
+          body: |
+            Auto-generated PDF from the latest `main` branch.
+            Built on ${{ github.event.head_commit.timestamp || 'manual trigger' }}.
+          files: build/EmbeddedModularDevelopment.pdf
+          prerelease: true
+          make_latest: false  # Don't mark as "Latest" since it's a prerelease/draft
