@@ -34,6 +34,7 @@
     - DO-01..DO-02 (Documentation) - Complete
     - UT-01..UT-09 (Unit Testing) - Draft
   - Debugging/Emulation section still a draft
+  - **TODO**: Add companion code references to chapter text (templates in `companion_code/ch2_conventions/`)
 
 ---
 
