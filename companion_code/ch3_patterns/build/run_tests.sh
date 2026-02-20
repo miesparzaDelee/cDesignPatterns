@@ -12,13 +12,20 @@ MAKE_TARGET=""
 TEST_ARGS_ARG=""
 
 # --- 1. Argument Parsing ---
-while getopts ":c:b:t:w:a:" opt; do
+while getopts ":c:b:t:w:a:g:" opt; do
   case "$opt" in
     c) CPPUTEST_HOME_ARG="$OPTARG" ;;
     b) BUILD_DIR_ARG="$OPTARG" ;;
-    t) MAKE_TARGET="$OPTARG" ;;
+    t) 
+        if [ "$OPTARG" == "clean" ]; then
+            MAKE_TARGET="$OPTARG"
+        else
+            TEST_ARGS_ARG="$TEST_ARGS_ARG -g $OPTARG"
+        fi
+        ;;
     w) MODULE_ROOT="$OPTARG" ;;  
     a) TEST_ARGS_ARG="$OPTARG" ;;
+    g) TEST_ARGS_ARG="$TEST_ARGS_ARG -g $OPTARG" ;; # Append group filter
     \?) ;; 
   esac
 done
