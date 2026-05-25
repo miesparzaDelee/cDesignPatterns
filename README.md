@@ -1,6 +1,8 @@
-# C Design Patterns: A Literate Programming Project
+# Modular Embedded C: Practices, Patterns, and Templates
 
-This repository contains the source code and manuscript for the book **"C Design Patterns"**.
+This repository contains the manuscript, companion code, and build system for **"Modular Embedded C: Practices, Patterns, and Templates"**.
+
+The book teaches a practical approach to building maintainable embedded C software through coding conventions, unit testing practices, reusable design patterns, and modular architecture techniques.
 
 It uses a custom **Literate Programming** build system where the C source code (`src/`) is automatically injected into the Markdown chapters (`book/`) during the build process. This ensures that every code snippet in the book is compilable, testable, and always up-to-date.
 
