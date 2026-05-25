@@ -57,6 +57,22 @@
   )
 }
 
+#let callout(attrs: (:), body) = {
+  let kind = attrs.at("class", default: "")
+
+  if kind == "convention" {
+    convention(
+      id: attrs.at("id", default: ""),
+      title: attrs.at("data-title", default: ""),
+      body,
+    )
+  } else if kind == "draft" {
+    draft(body)
+  } else {
+    body
+  }
+}
+
 #let project(title: "", authors: (), body) = {
   // --- 1. Page Setup ---
   set page(
