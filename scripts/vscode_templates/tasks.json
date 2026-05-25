@@ -4,8 +4,9 @@
         {
             "label": "Build Book",
             "type": "shell",
-            "command": "python",
+            "command": "py",
             "args": [
+                "-3",
                 "scripts/build_book.py"
             ],
             "group": {
@@ -30,6 +31,40 @@
             ],
             "dependsOn": [
                 "Build Book"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Build Book EPUB",
+            "type": "shell",
+            "command": "py",
+            "args": [
+                "-3",
+                "scripts/build_epub.py"
+            ],
+            "dependsOn": [
+                "Build Book"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Build Book All",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-Command",
+                "py -3 scripts/build_book.py; if ($?) { typst compile --root . build/main.typ build/main.pdf }; if ($?) { py -3 scripts/build_epub.py }"
             ],
             "group": "build",
             "presentation": {

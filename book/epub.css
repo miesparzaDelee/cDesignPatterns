@@ -1,0 +1,108 @@
+body {
+  color: #1f2933;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #2c3e50;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.25;
+}
+
+h1 {
+  border-bottom: 0.08em solid #2c3e50;
+  padding-bottom: 0.35em;
+}
+
+aside.convention {
+  background: #f0f7ff;
+  border: 0.08em solid #66a3e0;
+  border-radius: 0.35em;
+  margin: 1.4em 0;
+  padding: 0.95em;
+}
+
+.convention-title {
+  background: #0056b3;
+  border-radius: 0.25em 0.25em 0 0;
+  color: #ffffff;
+  display: block;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: bold;
+  margin: -0.95em -0.95em 0.95em -0.95em;
+  padding: 0.6em 0.8em;
+}
+
+.convention-id {
+  background: #ffffff;
+  border-radius: 0.2em;
+  color: #0056b3;
+  display: inline-block;
+  font-size: 0.9em;
+  margin-right: 0.65em;
+  padding: 0.15em 0.45em;
+}
+
+aside.draft {
+  background: #f5feff;
+  border-left: 0.35em solid #31b2bb;
+  border-radius: 0.25em;
+  margin: 1.4em 0;
+  padding: 0.95em;
+}
+
+.draft-title {
+  color: #1f7f86;
+  display: block;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.45em;
+}
+
+aside.note {
+  background: #fff8e6;
+  border-left: 0.35em solid #d68a00;
+  border-radius: 0.25em;
+  margin: 1.4em 0;
+  padding: 0.95em;
+}
+
+.note-title {
+  color: #9a6200;
+  display: block;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.45em;
+}
+
+pre {
+  background: #f4f6f8;
+  border: 0.06em solid #d0d7de;
+  border-radius: 0.35em;
+  line-height: 1.35;
+  margin: 1.1em 0;
+  overflow-x: auto;
+  padding: 0.8em;
+}
+
+code {
+  background: #eef2f5;
+  border-radius: 0.2em;
+  font-family: Consolas, Menlo, Monaco, monospace;
+  font-size: 0.9em;
+  padding: 0.05em 0.2em;
+}
+
+pre code {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+div.sourceCode {
+  background: transparent;
+}

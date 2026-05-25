@@ -57,6 +57,17 @@
   )
 }
 
+#let note(title: "", body) = {
+  block(
+    fill: rgb("#fff8e6"),
+    stroke: (left: 4pt + rgb("#d68a00")),
+    inset: 16pt,
+    radius: 4pt,
+    width: 100%,
+    [*#title:* #body],
+  )
+}
+
 #let callout(attrs: (:), body) = {
   let kind = attrs.at("class", default: "")
 
@@ -68,6 +79,8 @@
     )
   } else if kind == "draft" {
     draft(body)
+  } else if kind == "note" {
+    note(title: attrs.at("data-title", default: "Note"), body)
   } else {
     body
   }

@@ -22,7 +22,7 @@ We try to follow them strictly throughout this book to demonstrate their effecti
 We encourage the reader to identify how these practices are applied in the chapters that follow.
 However, in different contexts or legacy environments, strict adherence might not always be possible or beneficial.
 
-<highlight title = Convention Format>
+<aside class="note" data-title="Convention Format">
 
 Throughout this chapter, standards are presented as distinct "Convention" blocks for easy reference. Each block contains:
 
@@ -30,4 +30,4 @@ Throughout this chapter, standards are presented as distinct "Convention" blocks
 * **Standard**: The rule itself.
 * **Rationale**: The "why" behind the rule. Understanding the reason is more important than memorizing the rule; if the rationale no longer applies, the rule should be revisited.
 
-</highlight>
+</aside>
