@@ -16,7 +16,7 @@ ch3_.md
   ch3_8.md
   ch3_9.md
   ch3_10.md
-  ch3_11.md
+#  ch3_11.md
 
 # --- Core Templates ---
 ch4.md

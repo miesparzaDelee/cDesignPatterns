@@ -83,10 +83,13 @@ pre {
   background: #f4f6f8;
   border: 0.06em solid #d0d7de;
   border-radius: 0.35em;
+  font-size: 0.80em;
   line-height: 1.35;
   margin: 1.1em 0;
-  overflow-x: auto;
+  overflow-wrap: anywhere;
   padding: 0.8em;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 code {
@@ -100,9 +103,19 @@ code {
 pre code {
   background: transparent;
   border-radius: 0;
+  overflow-wrap: anywhere;
   padding: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 div.sourceCode {
   background: transparent;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+pre code span {
+  white-space: pre-wrap;
 }
