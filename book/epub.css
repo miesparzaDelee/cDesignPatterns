@@ -119,3 +119,23 @@ div.sourceCode {
 pre code span {
   white-space: pre-wrap;
 }
+
+table {
+  border-collapse: collapse;
+  margin: 1.2em auto;
+  width: 100%;
+}
+
+th,
+td {
+  border: 0.06em solid #7b8794;
+  padding: 0.45em 0.6em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  background: #eef2f5;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: bold;
+}
